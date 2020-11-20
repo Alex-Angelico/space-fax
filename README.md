@@ -8,6 +8,10 @@ Jordan Kidwell, Audrena Vacirca, Ricardo Barceras, Alex Angelico
 
 A source for customizable daily sapce facts based on user-selected interests.
 
+## Problem Domain
+
+Space is interesting. But space is hard! Lots of people are looking for a quick, interesting place to access diverse and itneresting informaiton about space exploration. Space FaX offers newbies an accessible platform for daily space facts and photos, and for people who have a deeper interest in more techincal info, a basic capability to track ongoing and upcoming space activity. Space FaX also encourages repeat user visits by giving them a location to store a gallery of cool space images.
+
 ## Features
 
 ### Daily Summary
