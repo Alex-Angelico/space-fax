@@ -156,14 +156,14 @@ Aim for all
 
 ### **Domain Model**
 
-- ![Domain Model](/readme/space-fax-domain-model.png)
+![Domain Model](/readme/space-fax-domain-model.png)
 
 ---
 
 ### **Wireframes**
 
-- ![Homepage](/readme/wireframe1.png)
-- ![Image Results](/readme/wireframe2.png)
-- ![Favorite Images](/readme/wireframe3.png)
-- ![Launch Schedule](/readme/wireframe4.png)
-- ![Favorite Launches](/readme/wireframe5.png)
+![Homepage](/readme/wireframe1.png)
+![Image Results](/readme/wireframe2.png)
+![Favorite Images](/readme/wireframe3.png)
+![Launch Schedule](/readme/wireframe4.png)
+![Favorite Launches](/readme/wireframe5.png)
