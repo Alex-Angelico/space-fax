@@ -162,8 +162,25 @@ Aim for all
 
 ### **Wireframes**
 
+**Homepage:**
 ![Homepage](/readme/wireframe1.png)
+
+---
+
+**Image Results:**
 ![Image Results](/readme/wireframe2.png)
+
+---
+
+**Favorite Images:**
 ![Favorite Images](/readme/wireframe3.png)
+
+---
+
+**Launch Schedule:**
 ![Launch Schedule](/readme/wireframe4.png)
+
+---
+
+**favorite Launches:**
 ![Favorite Launches](/readme/wireframe5.png)
