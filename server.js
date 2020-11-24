@@ -25,17 +25,16 @@ app.get('/', renderHomePage);
 // app.get('/', renderLaunch);
 
 function renderHomePage(req, res) {
-  let url = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=2020-11-23';
+  let url = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk';
 
   superagent.get(url)
     .then(data => {
-      return data.map(obj => {
-        return new FaX(obj);
-      })
+      console.log(data);
+      return new FaX(data.body);
     })
     .then(result => {
-      res.render('/', { dailyUpdate : result});
-      
+      res.render('index', { dailyUpdate: result });
+
     })
     .catch(err => console.error(err));
 }

@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
 
-<head><%- include('/partials/head') %></head>
+<head><%- include('./partials/head') %></head>
 
 <body>
   <header>
-    <%- include('/partials/header') %>
+    <%- include('./partials/header') %>
   </header>
   <main>
     <section>Date and Time Here</section>
     <div>
-      <section>Generated Content Goes Here</section>
-      <section>Generated Images Go here</section>
+      <img class="daily_img" src="<%= dailyUpdate.img_url %>">
+      <h2> Title <%= dailyUpdate.title %> </h2>
+      <section>Generated Content Go here <%= dailyUpdate.explanation %></section>
     </div>
     <div>
       <section>Search for Images
@@ -34,7 +35,7 @@
     </div>
   </main>
   <footer>
-    <%- include('/partials/footer') %>
+    <%- include('./partials/footer') %>
   </footer>
 </body>
 
