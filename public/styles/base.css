@@ -1,1 +1,58 @@
 @import "reset.css";
+
+/* @font-face{
+  font-family:'digital-7';
+  src: url('https://www.1001fonts.com/digital-7-font.html');
+ } */
+
+body {
+  background-color: #262626;
+}
+
+header {
+  height: 60px;
+  color: whitesmoke;
+}
+
+nav {
+  display: flex;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+li {
+  margin: auto;
+  padding: 10px 15px;
+  border: 1px solid black;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.clock_box {
+  /* width: 250px; */
+  border: 3px solid whitesmoke;
+  width: 250px;
+  height: 60px;
+}
+
+div {
+
+}
+
+span {
+  font-family: digital-7;
+}
+
+.daily_content {
+  display: flex;
+  flex-direction: row;
+}
+
+.daily_img {
+  max-width: 400px;
+  max-height:400px;
+  border: 10px groove whitesmoke;
+}
