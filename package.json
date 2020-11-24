@@ -1,0 +1,30 @@
+{
+  "name": "space-fax",
+  "version": "1.0.0",
+  "description": "## Contributors",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-Angelico/space-fax.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alex-Angelico/space-fax/issues"
+  },
+  "homepage": "https://github.com/Alex-Angelico/space-fax#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "pg": "^8.5.1",
+    "superagent": "^6.1.0"
+  }
+}
