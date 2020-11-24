@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head><%- include('./partials/head') %></head>
+
+<body>
+  <header>
+    <%- include('./partials/header') %>
+  </header>
+  <main>
+    <section>Date and Time Here</section>
+    <div>
+      <img class="daily_img" src="<%= dailyUpdate.img_url %>">
+      <h2> Title <%= dailyUpdate.title %> </h2>
+      <section>Generated Content Go here <%= dailyUpdate.explanation %></section>
+    </div>
+    <div>
+      <section>Search for Images
+        <form class="searchImage" action="placeholderForRoute" method="POST">
+          <input type="text" name="search" placeholder="search-query">
+          <fieldset>
+            <label for="images">Image Search</label>
+            <!-- <input type="radio" name="search" value="image"> -->
+          </fieldset>
+          <button type="submit">Warp Image Search</button>
+        </form>
+        <form class="searchLaunch" action="placeHolderForRoute" method="POST">
+          <fieldset>
+            <label for="launch">Launch Search</label>
+            <!-- <input type="radio" name="search" value="launch"> -->
+          </fieldset>
+          <button type="submit">Warp Launch Search</button>
+        </form>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <%- include('./partials/footer') %>
+  </footer>
+</body>
+
+</html>
