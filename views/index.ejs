@@ -19,11 +19,11 @@
     </div>
     <div>
       <section>Search for Images
-        <form class="searchImage" action="placeholderForRoute" method="POST">
-          <input type="text" name="search" placeholder="search-query">
+        <form class="searchImage" action="/image-results" method="POST">
+          <input type="text" name="search" placeholder="search-query" id="search" required>
           <fieldset>
-            <label for="images">Image Search</label>
-            <!-- <input type="radio" name="search" value="image"> -->
+            <label for="image">Image Search</label>
+            <input type="hidden" name="search" value="image">
           </fieldset>
           <button type="submit">Warp Image Search</button>
         </form>
