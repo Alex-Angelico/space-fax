@@ -20,12 +20,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 
-app.get('/', );
+// app.get('/', );
 
 
 client.connect()
-  .then(() =>{
-    app.listen(PORT, () =>{
+  .then(() => {
+    app.listen(PORT, () => {
       console.log(`server up: ${PORT}`)
     });
   })
