@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
 
-<head><%- include('/partials/head') %></head>
+<head><%- include('./partials/head') %></head>
 
 <body>
   <header>
-    <%- include('/partials/header') %>
+    <%- include('./partials/header') %>
   </header>
-  <main>
+  <main> 
+    <% imageList.forEach(imageObj => { %>
+      <img src="<%= imageObj.thumbImage %>" alt="searchImages">
+    <%  }) %>
+    
 
   </main>
   <footer>
-    <%- include('/partials/footer') %>
+    <%- include('./partials/footer') %>
   </footer>
 </body>
 
 </html>
+
