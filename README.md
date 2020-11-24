@@ -189,3 +189,9 @@ Aim for all
 **favorite Launches:**  
 
 ![Favorite Launches](/readme/wireframe5.png)
+
+---
+
+### Technical Sources
+
+[Date & Time Function:](https://www.plus2net.com/javascript_tutorial/clock.php)  
