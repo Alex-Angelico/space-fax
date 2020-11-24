@@ -20,7 +20,35 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 
-app.get('/', );
+app.get('/', renderHomePage);
+// app.get('/', renderLaunch);
+
+function renderHomePage(req, res) {
+  let url = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=2020-11-23';
+
+  superagent.get(url)
+    .then(data => {
+      return data.map(obj => {
+        return new FaX(obj);
+      })
+    })
+    .then(result => {
+      res.render('/', { dailyUpdate : result});
+      
+    })
+    .catch(err => console.error(err));
+}
+
+// function renderLaunch(req, res) {
+//   let SQL = 'SELECT * FROM launch_schedule';
+//   return client.query()
+// }
+
+function FaX(spaceFaX) {
+  this.img_url = spaceFaX.url;
+  this.title = spaceFaX.title;
+  this.explanation = spaceFaX.explanation;
+}
 
 
 client.connect()
