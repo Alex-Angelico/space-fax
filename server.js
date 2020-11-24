@@ -20,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 
+
 app.get('/', renderHomePage);
 // app.get('/', renderLaunch);
 
@@ -51,9 +52,10 @@ function FaX(spaceFaX) {
 }
 
 
+
 client.connect()
-  .then(() =>{
-    app.listen(PORT, () =>{
+  .then(() => {
+    app.listen(PORT, () => {
       console.log(`server up: ${PORT}`)
     });
   })
