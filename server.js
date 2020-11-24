@@ -48,18 +48,24 @@ function searchImages(req, res){
 
   if(req.body.search[1] === 'image' ) {url += `${req.body.search[0]}`; }
   
+  // let imageJson = [];
+
   // console.log(url);
   superagent.get(url)
     .then(data => {
+      // superagent.get(data.href)
       return data.body.collection.items.map(imageObj => {
         // console.log('d', imageObj);
         // console.log('hopefully an imageObj:', imageObj.links[0].href);
+        // imageJson.push(imageObj);
         return new SpaceImages(imageObj)
+
       })
     })
     .then(results =>{
-      console.log('results:', results)
       res.render('image-results', { imageList: results})
+      // console.log('results:', results)
+      return results;
     })
     .catch(err => console.error(err));
 }
@@ -70,9 +76,10 @@ function searchImages(req, res){
 // }
 
 function SpaceImages(spaceImg){
-  console.log('spaceImg.links:', spaceImg.links);
+  console.log('spaceImg.data:', spaceImg.data);
 
   this.thumbImage = spaceImg.links ? spaceImg.links[0].href : 'No image found' ;
+  this.imageDes = spaceImg.data ? spaceImg.data[0].description : 'No description available';
 }
 
 function FaX(spaceFaX) {
@@ -90,3 +97,18 @@ client.connect()
     });
   })
 client.on('error', err => console.err(err));
+
+
+// .then(resultObj => {
+//   console.log('resultObj:', resultObj);
+//   superagent.get(resultObj.href)
+//     .then(imageData => {
+//       // console.log('this should be some href stuff:', imageData);
+//     })
+// })
+
+// superagent.get(spaceImg.href)
+//     .then(results => {
+//       this.bigImg = results;
+//     })
+//   console.log('this is the bigImg:', bigImg);
