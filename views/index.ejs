@@ -3,16 +3,19 @@
 
 <head><%- include('./partials/head') %></head>
 
-<body>
+<body onload=display_ct();>
+
   <header>
     <%- include('./partials/header') %>
   </header>
   <main>
-    <section>Date and Time Here</section>
-    <div>
+    <!-- <section>Date and Time Here</section> -->
+    <div class="daily_content">
       <img class="daily_img" src="<%= dailyUpdate.img_url %>">
-      <h2> Title <%= dailyUpdate.title %> </h2>
-      <section>Generated Content Go here <%= dailyUpdate.explanation %></section>
+      <section class="text_container">
+        <h2><%= dailyUpdate.title %> </h2>
+        <article><%= dailyUpdate.explanation %></article>
+      </section>
     </div>
     <div>
       <section>Search for Images
@@ -37,6 +40,7 @@
   <footer>
     <%- include('./partials/footer') %>
   </footer>
+  <script src="./js/app.js"></script>>
 </body>
 
 </html>
