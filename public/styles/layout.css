@@ -1,0 +1,37 @@
+.favorites_main{
+  margin-right: 200px;
+  /* max-width: 600px; */
+}
+
+.favorite_parent{
+  padding-top: 20px;
+  /* height: 700px; */
+  /* width: 400px; */
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 20px 15px;
+  
+}
+
+
+.fav_images{
+  height: 400px;
+  position: relative;
+}
+
+.saved_images{
+  padding-bottom: 0.5em;
+  width: 200px;
+}
+
+.fav_title{
+  padding-bottom: 0.5em;
+  color: white;
+  font-size: 0.8em;
+}
+
+.remove_from_favorites{
+  position: absolute;
+  bottom: 10%;
+  left: 15%;
+}
