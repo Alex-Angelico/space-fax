@@ -29,8 +29,25 @@ app.delete('/favorites/:id', deleteFavoriteImage);
 
 app.post('/image-results', searchImages);
 
+function getAPODDate() {
+  var x = new Date()
+
+  var month = x.getMonth() + 1;
+  var day = x.getDate();
+  var year = x.getFullYear();
+  if (month < 10) { month = '0' + month; }
+  if (day < 10) { day = '0' + day; }
+
+  var formattedDate = `${year}-${month}-${day - 1}`;
+
+  return formattedDate;
+}
+
 function renderHomePage(req, res) {
-  let url = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=2020-11-24';
+
+  let APODDate = getAPODDate();
+
+  let url = `https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=${APODDate}`;
 
   superagent.get(url)
     .then(data => {
