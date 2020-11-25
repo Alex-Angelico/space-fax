@@ -8,9 +8,9 @@
     <%- include('./partials/header') %>
   </header>
   <main>
-    <ul><% imageList.forEach(image => { %>
-      <li data-id="<%= image.id %>">
-        <img src="<%= image.img_url %>" alt="searchImages">
+    <ul class="searchImageParent"><% imageList.forEach(image => { %>
+      <li class="searchImageContainer" data-id="<%= image.id %>">
+        <img class="searchImage" src="<%= image.img_url %>" alt="searchImages">
         <h3><%= image.title %></h3>
         <form action="/favorites" method="POST">
           <input type="hidden" name="img_url" value="<%= image.img_url %>"></input>

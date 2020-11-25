@@ -27,3 +27,5 @@ function display_ct() {
   document.getElementById('ct').innerHTML = x3;
   display_c();
 }
+
+$('body').attr('onload', 'display_ct()');
