@@ -7,14 +7,14 @@
   <header>
     <%- include('./partials/header') %>
   </header>
-  <main>
-    <ul>
+  <main class="favorites_main">
+    <ul class="favorite_parent">
       <% favoriteImages.forEach(image => { %>
-      <li .class="fav_img" data-id="<%= image.id %>">
-        <img src="<%= image.img_url %>">
-        <h3><%= image.title %></h3>
+      <li class="fav_images" data-id="<%= image.id %>">
+        <img class="saved_images" src="<%= image.img_url %>">
+        <h3 class="fav_title"><%= image.title %></h3>
         <form action="/favorites/<%= image.id %>?_warp=DELETE" method="POST">
-          <button type="submit">Remove From Favorites</button>
+          <button class="remove_from_favorites" type="submit">Remove From Favorites</button>
         </form>
       </li>
       <% }) %>
