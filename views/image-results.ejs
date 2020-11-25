@@ -7,12 +7,19 @@
   <header>
     <%- include('./partials/header') %>
   </header>
-  <main> 
-    <% imageList.forEach(imageObj => { %>
-      <img src="<%= imageObj.thumbImage %>" alt="searchImages">
-      <p><%= imageObj.imageDes %></p>
-    <%  }) %>
-    
+  <main>
+    <ul><% imageList.forEach(image => { %>
+      <li data-id="<%= image.id %>">
+        <img src="<%= image.img_url %>" alt="searchImages">
+        <h3><%= image.title %></h3>
+        <form action="/favorites" method="POST">
+          <input type="hidden" name="img_url" value="<%= image.img_url %>"></input>
+          <input type="hidden" name="title" value="<%= image.title %>"></input>
+          <button type="submit">Add To Favorites</button>
+        </form>
+      </li>
+      <%  }) %>
+    </ul>
 
   </main>
   <footer>
@@ -21,4 +28,3 @@
 </body>
 
 </html>
-
