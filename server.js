@@ -28,7 +28,7 @@ app.get('/', renderHomePage);
 app.post('/image-results', searchImages);
 
 function renderHomePage(req, res) {
-  let url = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk';
+  let url = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=2020-11-24';
 
   superagent.get(url)
     .then(data => {
@@ -42,12 +42,12 @@ function renderHomePage(req, res) {
     .catch(err => console.error(err));
 }
 
-function searchImages(req, res){
+function searchImages(req, res) {
 
   let url = 'https://images-api.nasa.gov/search?q=';
 
-  if(req.body.search[1] === 'image' ) {url += `${req.body.search[0]}`; }
-  
+  if (req.body.search[1] === 'image') { url += `${req.body.search[0]}`; }
+
   // let imageJson = [];
 
   // console.log(url);
@@ -62,8 +62,8 @@ function searchImages(req, res){
 
       })
     })
-    .then(results =>{
-      res.render('image-results', { imageList: results})
+    .then(results => {
+      res.render('image-results', { imageList: results })
       // console.log('results:', results)
       return results;
     })
@@ -75,10 +75,10 @@ function searchImages(req, res){
 //   return client.query()
 // }
 
-function SpaceImages(spaceImg){
+function SpaceImages(spaceImg) {
   console.log('spaceImg.data:', spaceImg.data);
 
-  this.thumbImage = spaceImg.links ? spaceImg.links[0].href : 'No image found' ;
+  this.thumbImage = spaceImg.links ? spaceImg.links[0].href : 'No image found';
   this.imageDes = spaceImg.data ? spaceImg.data[0].description : 'No description available';
 }
 
