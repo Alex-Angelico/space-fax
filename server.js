@@ -22,17 +22,18 @@ app.set('view engine', 'ejs');
 
 
 app.get('/', renderHomePage);
-
+app.get('/favorites', renderFavoriteImages);
+app.post('/favorites', addFavoriteImage);
+app.delete('/favorites/:id', deleteFavoriteImage);
 // app.get('/', renderLaunch);
 
 app.post('/image-results', searchImages);
 
 function renderHomePage(req, res) {
-  let url = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk';
+  let url = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=2020-11-24';
 
   superagent.get(url)
     .then(data => {
-      // console.log(data);
       return new FaX(data.body);
     })
     .then(result => {
@@ -42,31 +43,57 @@ function renderHomePage(req, res) {
     .catch(err => console.error(err));
 }
 
-function searchImages(req, res){
+function searchImages(req, res) {
 
   let url = 'https://images-api.nasa.gov/search?q=';
 
-  if(req.body.search[1] === 'image' ) {url += `${req.body.search[0]}`; }
-  
+  console.log(req.body.search);
+
+  if (req.body.search[1] === 'image') { url += `${req.body.search[0]}`; }
+
   // let imageJson = [];
 
-  // console.log(url);
   superagent.get(url)
     .then(data => {
       // superagent.get(data.href)
       return data.body.collection.items.map(imageObj => {
-        // console.log('d', imageObj);
-        // console.log('hopefully an imageObj:', imageObj.links[0].href);
-        // imageJson.push(imageObj);
         return new SpaceImages(imageObj)
 
       })
     })
-    .then(results =>{
-      res.render('image-results', { imageList: results})
-      // console.log('results:', results)
+    .then(results => {
+      res.render('image-results', { imageList: results })
       return results;
     })
+    .catch(err => console.error(err));
+}
+
+function renderFavoriteImages(req, res) {
+  let SQL = 'SELECT * FROM fav_images;';
+
+  return client.query(SQL)
+    .then(images => {
+      res.render('favorites', { favoriteImages: images.rows });
+    })
+    .catch(err => console.error(err))
+}
+// RETURNING *
+function addFavoriteImage(req, res) {
+  let { img_url, title } = req.body;
+  console.log(req.body);
+  let SQL = 'INSERT INTO fav_images (img_url, title) VALUES ($1, $2);';
+  let values = [img_url, title];
+
+  return client.query(SQL, values)
+    .then(res.redirect('/'))
+    .catch(err => console.error(err));
+}
+
+function deleteFavoriteImage(req, res) {
+  let SQL = `DELETE FROM fav_images WHERE id=${req.params.id};`;
+
+  client.query(SQL)
+    .then(res.redirect('/'))
     .catch(err => console.error(err));
 }
 
@@ -75,11 +102,9 @@ function searchImages(req, res){
 //   return client.query()
 // }
 
-function SpaceImages(spaceImg){
-  console.log('spaceImg.data:', spaceImg.data);
-
-  this.thumbImage = spaceImg.links ? spaceImg.links[0].href : 'No image found' ;
-  this.imageDes = spaceImg.data ? spaceImg.data[0].description : 'No description available';
+function SpaceImages(spaceImg) {
+  this.img_url = spaceImg.links ? spaceImg.links[0].href : 'No image found';
+  this.title = spaceImg.data ? spaceImg.data[0].title : 'No title available';
 }
 
 function FaX(spaceFaX) {
@@ -112,3 +137,15 @@ client.on('error', err => console.err(err));
 //       this.bigImg = results;
 //     })
 //   console.log('this is the bigImg:', bigImg);
+
+
+// app.get('/tracking/:id', trackedLaunchDetails);
+// function trackedLaunchDetails(req, res) {
+//   let SQL = 'SELECT * FROM launch_schedule WHERE id=$1;';
+//   let values = [req.params.id];
+
+//   return client.query(SQL, values)
+//     .then(data => {
+//       res.render('tracking/:id')
+//     })
+// }
