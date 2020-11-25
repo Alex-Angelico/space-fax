@@ -47,7 +47,6 @@ function searchImages(req, res) {
 
   let url = 'https://images-api.nasa.gov/search?q=';
 
-  console.log(req.body.search);
 
   if (req.body.search[1] === 'image') { url += `${req.body.search[0]}`; }
 
@@ -63,6 +62,7 @@ function searchImages(req, res) {
     })
     .then(results => {
       res.render('image-results', { imageList: results })
+
       return results;
     })
     .catch(err => console.error(err));
@@ -103,8 +103,10 @@ function deleteFavoriteImage(req, res) {
 // }
 
 function SpaceImages(spaceImg) {
+
   this.img_url = spaceImg.links ? spaceImg.links[0].href : 'No image found';
   this.title = spaceImg.data ? spaceImg.data[0].title : 'No title available';
+
 }
 
 function FaX(spaceFaX) {
