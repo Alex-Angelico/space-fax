@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
 
-<head><%- include('/partials/head') %></head>
+<head><%- include('./partials/head') %></head>
 
 <body>
   <header>
-    <%- include('/partials/header') %>
+    <%- include('./partials/header') %>
   </header>
   <main>
-
+    <ul>
+      <% favoriteImages.forEach(image => { %>
+      <li .class="fav_img" data-id="<%= image.id %>">
+        <img src="<%= image.img_url %>">
+        <h3><%= image.title %></h3>
+        <form action="/favorites/<%= image.id %>?_warp=DELETE" method="POST">
+          <button type="submit">Remove From Favorites</button>
+        </form>
+      </li>
+      <% }) %>
+    </ul>
   </main>
   <footer>
-    <%- include('/partials/footer') %>
+    <%- include('./partials/footer') %>
   </footer>
 </body>
 
