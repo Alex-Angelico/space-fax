@@ -4,14 +4,22 @@
   font-family:'digital-7';
   src: url('https://www.1001fonts.com/digital-7-font.html');
  } */
+* {
+  justify-content: center;
+  align-content: center;
+}
 
 body {
   background-color: #262626;
+  width: 90vw;
+  margin: 20px auto;
 }
 
 header {
   height: 60px;
   color: whitesmoke;
+  margin: auto;
+  width: 60vw;
 }
 
 nav {
@@ -22,7 +30,7 @@ ul {
   display: flex;
   flex-direction: row;
   align-content: center;
-  padding-left: 25%;
+  margin: auto;
 }
 
 li {
@@ -31,8 +39,14 @@ li {
   border: 1px solid black;
   border-radius: 10px 10px 0px 0px;
   font-family: 'Press Start 2P', cursive;
- 
 }
+
+li:hover {
+  transition: 500;
+  background-color: white;
+  box-shadow: 0 0 10px white;
+}
+
 a:link {
   font-size: 10px;
   text-decoration: none;
@@ -40,39 +54,60 @@ a:link {
 }
 
 .clock_box {
-  /* width: 250px; */
-  border: 3px solid whitesmoke;
   width: 200px;
   margin-left: auto;
   justify-content: center;
   align-items: center;
 }
 
-div {
-
+header > .clock_box {
+justify-items: right;
 }
 
 span {
   font-family: digital-7;
+  text-shadow: 0px 0px 25px rgb(173, 172, 235);
+  color: white;
 }
 
 .daily_content {
   display: flex;
   flex-direction: row;
   padding-top: 2em;
+  border: 2px solid white;
+  border-radius: 35px;
+  width: 60vw;
+  height: 500px;
+  margin: auto;
+  justify-content: center;
+  align-content: center;
+  background-color: white;
 }
 
 .daily_img {
-  width: 400px;
+  width: 25vw;
   height:400px;
-  border: 5px groove whitesmoke;
+  /* border: 5px groove whitesmoke; */
+  border-radius: 10px;
+  margin-right: 20px;
 }
 
+section.text_container {
+  font-family: 'Roboto', sans-serif;
+width: 25vw;
+height: 400px;
+margin-left: 20px;
+/* overflow: scroll; */
+/* overflow-y: scroll; */
+/* border: chartreuse solid 5px; */
+}
 .imgContainer {
-  border: 3px solid whitesmoke;
-  width: 300px;
-  margin-top: 3em;
+  width: 60vw;
+  margin: 3em auto;
   text-align: center;
+  display: flexbox;
+ align-items: space-between; 
+ font-family: 'Roboto', sans-serif; 
 }
 h1 {
   color: cadetblue;
@@ -81,11 +116,23 @@ font-size: x-large;
 }
 h2{
   font-size: 2em;
-  margin-top: 2em;
+  margin-bottom: 10px;
 }
-section.text_container {
-  font-family: 'Roboto', sans-serif;
-max-width: 500px;
-padding-top: 2em;
-border: chartreuse solid 5px;
+article {
+ max-height: 300px;
+ text-align: justify;
+ overflow-y: scroll;
+}
+
+.searchLaunch, .searchImage {
+display: inline-flex;
+}
+
+.searchImage > * {
+  display: block;
+}
+
+.rocketSearch {
+  height: 50px;
+
 }
