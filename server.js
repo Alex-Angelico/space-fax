@@ -21,15 +21,31 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 
-app.get('/', renderHomePage);
+app.get('/', renderHomePage)
+
+// app.get('/', renderAPODData);
 app.get('/favorites', renderFavoriteImages);
 app.get('/launch-results', renderUpcomingLaunches);
-app.post('/favorites', addFavoriteImage);
-app.delete('/favorites/:id', deleteFavoriteImage);
+// app.get('/tracking', renderTrackedLaunches)
 
-
+app.post('/launch-results', trackLaunch);
 app.post('/image-results', searchImages);
-app.post('/', )
+
+app.post('/favorites', addFavoriteImage);
+
+app.delete('/favorites/:id', deleteFavoriteImage);
+app.delete('/tracking/:id', deleteTrackedLaunch);
+
+
+
+function renderHomePage(req, res) {
+  const promise1 = renderAPODData;
+  const promise2 = renderTrackedLaunches;
+
+  Promise.all([promise1, promise2]).then((values) => {
+    console.log(values);
+  })
+}
 
 function getAPODDate() {
   var x = new Date()
@@ -45,10 +61,8 @@ function getAPODDate() {
   return formattedDate;
 }
 
-function renderHomePage(req, res) {
-
+function renderAPODData(req, res) {
   let APODDate = getAPODDate();
-
   let url = `https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=${APODDate}`;
 
   superagent.get(url)
@@ -57,29 +71,22 @@ function renderHomePage(req, res) {
     })
     .then(result => {
       res.render('index', { dailyUpdate: result });
-
     })
     .catch(err => console.error(err));
 }
 
 function searchImages(req, res) {
-
   let url = 'https://images-api.nasa.gov/search?q=';
-
-
   if (req.body.search[1] === 'image') { url += `${req.body.search[0]}`; }
-
 
   superagent.get(url)
     .then(data => {
       return data.body.collection.items.map(imageObj => {
         return new SpaceImages(imageObj)
-
       })
     })
     .then(results => {
       res.render('image-results', { imageList: results })
-
       return results;
     })
     .catch(err => console.error(err));
@@ -94,7 +101,18 @@ function renderFavoriteImages(req, res) {
     })
     .catch(err => console.error(err))
 }
-// RETURNING *
+
+function renderTrackedLaunches(req, res) {
+  let SQL = 'SELECT * FROM tracked_launches;';
+
+  return client.query(SQL)
+    .then(launches => {
+      // res.render('tracking', { trackedLaunches: launches.rows });
+      res.render('index', { trackedLaunches: launches.rows });
+    })
+    .catch(err => console.error(err))
+}
+
 function addFavoriteImage(req, res) {
   let { img_url, title } = req.body;
   console.log(req.body);
@@ -106,6 +124,17 @@ function addFavoriteImage(req, res) {
     .catch(err => console.error(err));
 }
 
+function trackLaunch(req, res) {
+  const trackedLaunch = JSON.parse(req.body.launch);
+  let { date, launchProvider, missionName, statusName, missionDescription, orbit, rocketName, rocketStartWindow, rocketEndWindow } = trackedLaunch;
+  let SQL = 'INSERT INTO tracked_launches (date, launchProvider, missionName, statusName, missionDescription, orbit, rocketName, rocketStartWindow, rocketEndWindow) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);';
+  let values = [date, launchProvider, missionName, statusName, missionDescription, orbit, rocketName, rocketStartWindow, rocketEndWindow];
+
+  return client.query(SQL, values)
+    .then(res.redirect('/'))
+    .catch(error => console.error(error));
+}
+
 function deleteFavoriteImage(req, res) {
   let SQL = `DELETE FROM fav_images WHERE id=${req.params.id};`;
 
@@ -114,20 +143,23 @@ function deleteFavoriteImage(req, res) {
     .catch(err => console.error(err));
 }
 
+function deleteTrackedLaunch(req, res) {
+  let SQL = `DELETE FROM tracked_launches WHERE id=${req.params.id};`;
+
+  client.query(SQL)
+    .then(res.redirect('/'))
+    .catch(err => console.error(err));
+}
+
 function renderUpcomingLaunches(req, res) {
-  // let url = 'https://ll.thespacedevs.com/2.1.0/launch/upcoming?limit=20';
-  let url = 'https://ll.thespacedevs.com/2.1.0/launch/145b2935-8b72-44b2-8bda-4c27887721fd';
+  let url = 'https://ll.thespacedevs.com/2.1.0/launch/upcoming?limit=3';
 
   superagent.get(url)
     .then(data => {
-      return data.body.results.map(launchObj => {
-        return new Launch(launchObj)
-
-      })
+      return data.body.results.map(launchObj => { return new Launch(launchObj) })
     })
     .then(results => {
       res.render('launch-results', { launchList: results })
-
       return results;
     })
     .catch(err => console.error(err));
@@ -135,10 +167,8 @@ function renderUpcomingLaunches(req, res) {
 
 
 function SpaceImages(spaceImg) {
-
   this.img_url = spaceImg.links ? spaceImg.links[0].href : 'No image found';
   this.title = spaceImg.data ? spaceImg.data[0].title : 'No title available';
-
 }
 
 function FaX(spaceFaX) {
@@ -149,18 +179,17 @@ function FaX(spaceFaX) {
 
 function Launch(rocket) {
   // these will be for search
-  this.date = rocket.net;
-  this.launchProvider = rocket.launch_service_provider.name;
-  this.missionName = rocket.mission.name;
-  this.status = rocket.status.name;
+  this.date = rocket.net ? rocket.net : 'No launch date yet.';
+  this.launchProvider = rocket.launch_service_provider ? rocket.launch_service_provider.name : 'Unknown launch provider.';
+  this.missionName = rocket.mission ? rocket.mission.name : 'Mission name unavailable.';
+  this.status = rocket.status ? rocket.status.name : 'Launch status unknown.';
   // these will be for detailed view
-  this.missionDescription = rocket.mission.description;
-  this.orbit = rocket.mission.orbit.name;
-  this.rocketName = rocket.rocket.configuration.name;
-  this.rocketStartWindow = rocket.window_start;
-  this.rocketEndWindow = rocket.window_end;
+  this.missionDescription = rocket.mission ? rocket.mission.description : 'Mission description unavailable';
+  this.orbit = rocket.mission.orbit ? rocket.mission.orbit.name : 'Orbital profile unknown.';
+  this.rocketName = rocket.rocket.configuration ? rocket.rocket.configuration.name : 'Launch vehicle unknown.';
+  this.rocketStartWindow = rocket.window_start ? rocket.window_start : 'Launch window opening unknown.';
+  this.rocketEndWindow = rocket.window_end ? rocket.window_start : 'Launch window closing unknown.';
 }
-
 
 client.connect()
   .then(() => {
