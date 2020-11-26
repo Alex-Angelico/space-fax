@@ -15,6 +15,10 @@
         <h3><%=launch.launchProvider%></h3>
         <h3><%=launch.missionName%></h3>
         <h3><%=launch.status%></h3>
+        <form action="/launch-results" method="POST">
+          <input type="hidden" name="launch" value="<%= JSON.stringify(launch) %>"></input>
+          <button type="submit">Track This Launch</button>
+        </form>
       </li>
       <% }) %>
     </ul>
