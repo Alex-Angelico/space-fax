@@ -3,8 +3,6 @@
 
 <head><%- include('./partials/head') %></head>
 
-<!-- <body onload=display_ct();> -->
-
 <body>
   <header>
     <%- include('./partials/header') %>
@@ -24,9 +22,9 @@
         <input type="hidden" name="search" value="image">
         <button type="submit" class="imageSearch">NASA Image Search</button>
       </form>
-      <form class="searchLaunch" action="placeHolderForRoute" method="POST">
-        <button type="submit" class="rocketSearch">Upcoming Rocket Launches</button>
-      </form>
+      <!-- <form class="searchLaunch" action="placeHolderForRoute" method="POST"> -->
+      <button class="rocketSearch"><a href="/launch-results">Upcoming Rocket Launches</a></button>
+      <!-- </form> -->
     </div>
   </main>
   <footer>
