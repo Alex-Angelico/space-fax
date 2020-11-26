@@ -23,11 +23,13 @@ app.set('view engine', 'ejs');
 
 app.get('/', renderHomePage);
 app.get('/favorites', renderFavoriteImages);
+app.get('/launch-results', renderUpcomingLaunches);
 app.post('/favorites', addFavoriteImage);
 app.delete('/favorites/:id', deleteFavoriteImage);
-// app.get('/', renderLaunch);
+
 
 app.post('/image-results', searchImages);
+app.post('/', )
 
 function getAPODDate() {
   var x = new Date()
@@ -67,11 +69,9 @@ function searchImages(req, res) {
 
   if (req.body.search[1] === 'image') { url += `${req.body.search[0]}`; }
 
-  // let imageJson = [];
 
   superagent.get(url)
     .then(data => {
-      // superagent.get(data.href)
       return data.body.collection.items.map(imageObj => {
         return new SpaceImages(imageObj)
 
@@ -114,10 +114,25 @@ function deleteFavoriteImage(req, res) {
     .catch(err => console.error(err));
 }
 
-// function renderLaunch(req, res) {
-//   let SQL = 'SELECT * FROM launch_schedule';
-//   return client.query()
-// }
+function renderUpcomingLaunches(req, res) {
+  // let url = 'https://ll.thespacedevs.com/2.1.0/launch/upcoming?limit=20';
+  let url = 'https://ll.thespacedevs.com/2.1.0/launch/145b2935-8b72-44b2-8bda-4c27887721fd';
+
+  superagent.get(url)
+    .then(data => {
+      return data.body.results.map(launchObj => {
+        return new Launch(launchObj)
+
+      })
+    })
+    .then(results => {
+      res.render('launch-results', { launchList: results })
+
+      return results;
+    })
+    .catch(err => console.error(err));
+}
+
 
 function SpaceImages(spaceImg) {
 
@@ -132,6 +147,19 @@ function FaX(spaceFaX) {
   this.explanation = spaceFaX.explanation;
 }
 
+function Launch(rocket) {
+  // these will be for search
+  this.date = rocket.net;
+  this.launchProvider = rocket.launch_service_provider.name;
+  this.missionName = rocket.mission.name;
+  this.status = rocket.status.name;
+  // these will be for detailed view
+  this.missionDescription = rocket.mission.description;
+  this.orbit = rocket.mission.orbit.name;
+  this.rocketName = rocket.rocket.configuration.name;
+  this.rocketStartWindow = rocket.window_start;
+  this.rocketEndWindow = rocket.window_end;
+}
 
 
 client.connect()

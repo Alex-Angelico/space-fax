@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html>
 
-<head><%- include('/partials/head') %></head>
+<head><%- include('./partials/head') %></head>
 
 <body>
   <header>
-    <%- include('/partials/header') %>
+    <%- include('./partials/header') %>
   </header>
   <main>
-
+    <ul>
+      <% launchList.forEach(launch => { %>
+      <li>
+        <h3><%=launch.date%></h3>
+        <h3><%=launch.launchProvider%></h3>
+        <h3><%=launch.missionName%></h3>
+        <h3><%=launch.status%></h3>
+      </li>
+      <% }) %>
+    </ul>
   </main>
   <footer>
-    <%- include('/partials/footer') %>
+    <%- include('./partials/footer') %>
   </footer>
 </body>
 
