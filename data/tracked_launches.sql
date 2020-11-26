@@ -1,8 +1,14 @@
-DROP TABLE IF EXISTS launch_schedule;
+DROP TABLE IF EXISTS tracked_launches;
 
-CREATE TABLE launch_schedule (
+CREATE TABLE tracked_launches (
   id SERIAL PRIMARY KEY,
-  launch_provider (TEXT),
   date VARCHAR (255),
-  description (TEXT)
+  launchProvider TEXT,
+  missionName TEXT,
+  statusName TEXT,
+  missionDescription TEXT,
+  orbit TEXT,
+  rocketName TEXT,
+  rocketStartWindow VARCHAR (255),
+  rocketEndWindow VARCHAR (255)
 );
