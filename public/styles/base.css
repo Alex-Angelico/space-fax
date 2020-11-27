@@ -59,6 +59,7 @@ a:link {
   margin-left: auto;
   justify-content: center;
   align-items: center;
+  padding-left: 10px;
 }
 
 header > .clock_box {
@@ -104,16 +105,19 @@ margin-left: 20px;
 }
 .imgContainer {
   width: 60vw;
+  height: 40px;
   margin: 3em auto;
   text-align: center;
-  display: flexbox;
- align-items: space-between; 
- font-family: 'Roboto', sans-serif; 
+  flex-direction: column;
+  align-items: space-between; 
+  font-family: 'Roboto', sans-serif; 
+  
+  
 }
 h1 {
   color: cadetblue;
-font-family: 'Press Start 2P', cursive;
-font-size: x-large;
+  font-family: 'Press Start 2P', cursive;
+  font-size: x-large;
 }
 h2{
   font-size: 2em;
@@ -129,22 +133,35 @@ article::-webkit-scrollbar{
   display: none;
 }
 
-.searchLaunch, .searchImage {
-display: inline-flex;
-}
-
 .searchImage > * {
-  display: block;
+  height: 25px;
+  opacity: 0.6;
+  transition: 0.3s;
+  border-radius: 10px;
 }
 
 .rocketSearch {
-  height: 50px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: gray;
+
+}
+
+.rocketSearch:hover {
+  transition: 1s;
+  background: pink;
+  color: cornflowerblue;
+}
+
+.rocketSearch {
+  color: black;
 }
 
 .searchImageParent {
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 20px 15px;
+  
 }
 
 .searchImageContainer {
@@ -152,17 +169,29 @@ display: inline-flex;
   align-content: center;
   position: relative;
   height: 400px;
+  
 }
 
 .searchImageContainer button {
   position: absolute;
   bottom: 10%;
   left: 15%;
+  
+  
 }
 
 .searchImage {
-  width: 100%;
-  height: 200px;
+  /* width: 80%; */
+  height: 40px;
   padding-bottom: .5em;
   overflow: hidden;
+  
+  
+}
+
+.imageSearch:hover{
+  transition: 1s;
+  background: pink;
+  color: cornflowerblue;
+  
 }

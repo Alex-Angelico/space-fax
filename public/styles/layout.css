@@ -1,6 +1,11 @@
+/* this is favorites gallery css */
+
 .favorites_main{
-  margin-right: 200px;
+  /* margin-right: 200px; */
   /* max-width: 600px; */
+  margin: auto;
+  padding: 15px;
+  width: 800px;
 }
 
 .favorite_parent{
@@ -8,30 +13,79 @@
   /* height: 700px; */
   /* width: 400px; */
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto;
   gap: 20px 15px;
   
 }
 
-
 .fav_images{
   height: 400px;
   position: relative;
+  display: grid;
+  grid-template-columns: auto;
 }
 
 .saved_images{
   padding-bottom: 0.5em;
-  width: 200px;
+  width: 100%;
+  max-height: 200px;
 }
 
 .fav_title{
   padding-bottom: 0.5em;
   color: white;
   font-size: 0.8em;
+  text-align: center;
 }
 
 .remove_from_favorites{
   position: absolute;
   bottom: 10%;
-  left: 15%;
+  left: 20%;
+}
+
+/* this is for search results css */
+
+.addResults{
+  /* margin-right: 40px; */
+  margin: auto;
+  padding: 15px;
+  width: 800px;
+}
+
+.addImageParent{
+  padding-top: 20px;
+  /* height: 700px; */
+  /* width: 400px; */
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 20px 15px;
+  
+}
+
+.addImageContainer{
+  height: 400px;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.addImage{
+  padding-bottom: 0.5em;
+  width: 100%;
+  max-height: 200px;
+}
+
+.image_title{
+  padding-bottom: 0.5em;
+  color: white;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.add_to_favorites{
+  position: absolute;
+  bottom: 10%;
+  left: 30%;
+
 }
