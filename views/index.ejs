@@ -8,12 +8,11 @@
     <%- include('./partials/header') %>
   </header>
   <main>
-    <!-- <section>Date and Time Here</section> -->
     <div class="daily_content">
-      <img class="daily_img" src="<%= dailyUpdate.img_url %>">
+      <img class="daily_img" src="<%= homePageObject[0].img_url %>">
       <section class="text_container">
-        <h2><%= dailyUpdate.title %> </h2>
-        <article><%= dailyUpdate.explanation %></article>
+        <h2><%= homePageObject[0].title %> </h2>
+        <article><%= homePageObject[0].explanation %></article>
       </section>
     </div>
     <div class="imgContainer">
@@ -22,12 +21,31 @@
         <input type="hidden" name="search" value="image">
         <button type="submit" class="imageSearch">NASA Image Search</button>
       </form>
-      <!-- <form class="searchLaunch" action="placeHolderForRoute" method="POST"> -->
       <form action="/launch-results">
         <button class="rocketSearch">Upcoming Rocket Launches</button>
       </form>
-      <!-- </form> -->
     </div>
+    <ul class="tracked-launches">
+      <% homePageObject[1].rows.forEach(launch => { %>
+      <li class="tracked-launch">
+        <span class="topline-info"><p class="launch-labels">Date: </p><%=launch.date%></span>
+        <span class="topline-info"><p class="launch-labels">Provider: </p><%=launch.launchprovider%></span>
+        <span class="body-info"><p class="launch-labels">Mission: </p><%=launch.missionname%></span>
+        <span class="body-info"><p class="launch-labels"></p>Description: <%=launch.missiondescription%></span>
+        <span class="body-info"><p class="launch-labels">Orbital Profile: </p><%=launch.orbit%></span>
+        <span class="body-info"><p class="launch-labels">Vehicle: </p><%=launch.rocketname%></span>
+        <span class="status-info">
+        <h3><%=launch.statusname%></h3>
+        <p><%=launch.rocketstartwindow%></p>
+        <p><%=launch.rocketendwindow%></p>
+      </span>
+      <form action="/<%= launch.id %>?_warp=DELETE" method="POST">
+        <button class="remove_from_tracker" type="submit">Remove From Tracker</button>
+      </form>
+      </li>
+
+      <% }) %>
+    </ul>
   </main>
   <footer>
     <%- include('./partials/footer') %>
@@ -35,5 +53,3 @@
 </body>
 
 </html>
-
-<!-- <a href="/launch-results"></a> -->

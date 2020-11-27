@@ -34,7 +34,7 @@ app.post('/image-results', searchImages);
 app.post('/favorites', addFavoriteImage);
 
 app.delete('/favorites/:id', deleteFavoriteImage);
-app.delete('/tracking/:id', deleteTrackedLaunch);
+app.delete('/:id', deleteTrackedLaunch);
 
 
 
@@ -43,10 +43,10 @@ function renderHomePage(req, res) {
   const promise2 = renderTrackedLaunches();
 
   Promise.all([promise1, promise2])
-    .then((values) => {
-      // console.log('VALUE TEST: ', values);
-      res.render('index', { homePageObject: values });
+    .then((results) => {
+      res.render('index', { homePageObject: results });
     })
+    .catch(err => console.error(err));
 }
 
 function getAPODDate() {
@@ -223,7 +223,7 @@ function Launch(rocket) {
   this.date = rocket.net ? rocket.net : 'No launch date yet.';
   this.launchProvider = rocket.launch_service_provider ? rocket.launch_service_provider.name : 'Unknown launch provider.';
   this.missionName = rocket.mission ? rocket.mission.name : 'Mission name unavailable.';
-  this.status = rocket.status ? rocket.status.name : 'Launch status unknown.';
+  this.statusName = rocket.status ? rocket.status.name.toUpperCase() : 'Launch status unknown.';
   // these will be for detailed view
   this.missionDescription = rocket.mission ? rocket.mission.description : 'Mission description unavailable';
   this.orbit = rocket.mission.orbit ? rocket.mission.orbit.name : 'Orbital profile unknown.';
