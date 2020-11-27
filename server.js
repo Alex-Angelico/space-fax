@@ -21,9 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 
-// app.get('/', renderHomePage);
+app.get('/', renderHomePage);
 
-app.get('/', renderAPODData);
+// app.get('/', renderAPODData);
 app.get('/favorites', renderFavoriteImages);
 app.get('/launch-results', renderUpcomingLaunches);
 // app.get('/tracking', renderTrackedLaunches)
@@ -39,12 +39,14 @@ app.delete('/tracking/:id', deleteTrackedLaunch);
 
 
 function renderHomePage(req, res) {
-  const promise1 = renderAPODData;
-  const promise2 = renderTrackedLaunches;
+  const promise1 = renderAPODData();
+  const promise2 = renderTrackedLaunches();
 
-  Promise.all([promise1, promise2]).then((values) => {
-    console.log(values);
-  })
+  Promise.all([promise1, promise2])
+    .then((values) => {
+      // console.log('VALUE TEST: ', values);
+      res.render('index', { homePageObject: values });
+    })
 }
 
 function getAPODDate() {
@@ -66,14 +68,28 @@ function renderAPODData(req, res) {
   let url = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk';
   let backup = `https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=${previousDate}`;
 
-  superagent.get(url)
-    .then(data => {
-      return new FaX(data.body);
-    })
-    .then(result => {
-      res.render('index', { dailyUpdate: result });
-    })
-    .catch(err => console.error(err));
+  if (superagent.get(url)) {
+    return superagent.get(url)
+      .then(data => {
+        return new FaX(data.body);
+      })
+      .catch(err => console.error(err));
+  } else {
+    return superagent.get(backup)
+      .then(data => {
+        return new FaX(data.body);
+      })
+      .catch(err => console.error(err));
+  }
+
+  // superagent.get(url)
+  //   .then(data => {
+  //     return new FaX(data.body);
+  //   })
+  //   .then(result => {
+  //     res.render('index', { dailyUpdate: result });
+  //   })
+  //   .catch(err => console.error(err));
 
   // if (superagent.get(url)) {
   //   superagent.get(url)
@@ -81,25 +97,7 @@ function renderAPODData(req, res) {
   //       return new FaX(data.body);
   //     })
   //     .then(result => {
-  //       res.render('index', { dailyUpdate: result });
-  //     })
-  //     .catch(err => console.error(err));
-  // } else {
-  //   superagent.get(backup)
-  //     .then(data => {
-  //       return new FaX(data.body);
-  //     })
-  //     .then(result => {
-  //       res.render('index', { dailyUpdate: result });
-  //     })
-  //     .catch(err => console.error(err));
-  // }
-  // superagent.get(url)
-  // if (res.status() === '400') {
-  //     .then(data => {
-  //   return new FaX(data.body);
-  // })
-  //     .then(result => {
+  //       console.log(result);
   //       res.render('index', { dailyUpdate: result });
   //     })
   //     .catch(err => console.error(err));
@@ -146,11 +144,14 @@ function renderTrackedLaunches(req, res) {
   let SQL = 'SELECT * FROM tracked_launches;';
 
   return client.query(SQL)
-    .then(launches => {
-      // res.render('tracking', { trackedLaunches: launches.rows });
-      res.render('index', { trackedLaunches: launches.rows });
-    })
-    .catch(err => console.error(err))
+
+  // return client.query(SQL)
+  //   .then(launches => {
+  //     console.log(launches);
+  //     // res.render('tracking', { trackedLaunches: launches.rows });
+  //     res.render('index', { trackedLaunches: launches.rows });
+  //   })
+  //   .catch(err => console.error(err))
 }
 
 function addFavoriteImage(req, res) {
