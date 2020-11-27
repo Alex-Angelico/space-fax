@@ -21,9 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 
-app.get('/', renderHomePage)
+// app.get('/', renderHomePage);
 
-// app.get('/', renderAPODData);
+app.get('/', renderAPODData);
 app.get('/favorites', renderFavoriteImages);
 app.get('/launch-results', renderUpcomingLaunches);
 // app.get('/tracking', renderTrackedLaunches)
@@ -62,8 +62,9 @@ function getAPODDate() {
 }
 
 function renderAPODData(req, res) {
-  let APODDate = getAPODDate();
-  let url = `https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=${APODDate}`;
+  let previousDate = getAPODDate();
+  let url = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk';
+  let backup = `https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=${previousDate}`;
 
   superagent.get(url)
     .then(data => {
@@ -73,6 +74,45 @@ function renderAPODData(req, res) {
       res.render('index', { dailyUpdate: result });
     })
     .catch(err => console.error(err));
+
+  // if (superagent.get(url)) {
+  //   superagent.get(url)
+  //     .then(data => {
+  //       return new FaX(data.body);
+  //     })
+  //     .then(result => {
+  //       res.render('index', { dailyUpdate: result });
+  //     })
+  //     .catch(err => console.error(err));
+  // } else {
+  //   superagent.get(backup)
+  //     .then(data => {
+  //       return new FaX(data.body);
+  //     })
+  //     .then(result => {
+  //       res.render('index', { dailyUpdate: result });
+  //     })
+  //     .catch(err => console.error(err));
+  // }
+  // superagent.get(url)
+  // if (res.status() === '400') {
+  //     .then(data => {
+  //   return new FaX(data.body);
+  // })
+  //     .then(result => {
+  //       res.render('index', { dailyUpdate: result });
+  //     })
+  //     .catch(err => console.error(err));
+  // } else {
+  //   superagent.get(backup)
+  //     .then(data => {
+  //       return new FaX(data.body);
+  //     })
+  //     .then(result => {
+  //       res.render('index', { dailyUpdate: result });
+  //     })
+  //     .catch(err => console.error(err));
+  // }
 }
 
 function searchImages(req, res) {
