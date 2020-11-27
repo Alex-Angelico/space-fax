@@ -1,8 +1,6 @@
 /* this is favorites gallery css */
 
 .favorites_main{
-  /* margin-right: 200px; */
-  /* max-width: 600px; */
   margin: auto;
   padding: 15px;
   width: 800px;
@@ -10,8 +8,6 @@
 
 .favorite_parent{
   padding-top: 20px;
-  /* height: 700px; */
-  /* width: 400px; */
   display: grid;
   grid-template-columns: auto auto auto;
   gap: 20px 15px;
@@ -47,7 +43,6 @@
 /* this is for search results css */
 
 .addResults{
-  /* margin-right: 40px; */
   margin: auto;
   padding: 15px;
   width: 800px;
@@ -55,8 +50,6 @@
 
 .addImageParent{
   padding-top: 20px;
-  /* height: 700px; */
-  /* width: 400px; */
   display: grid;
   grid-template-columns: auto auto auto;
   gap: 20px 15px;
@@ -89,3 +82,39 @@
   left: 30%;
 
 }
+
+/* this is for tracked launch results */
+
+.tracked-launches {
+  width: 60vw;
+  display: grid;
+  grid-template-columns: auto;
+  align-items: end;
+  margin-top: 100px;
+  
+}
+
+.tracked-launch {
+  max-width: 60vw;
+  /* grid-row: 1; */
+  margin: 10px 0px;
+  background: white;
+  border-radius: 10px;
+  text-align: justify;
+  padding: 1em;
+}
+
+.status-info {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.topline-info {
+  font-family: 'Roboto', sans-serif;
+}
+
+.body-info {
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
