@@ -106,14 +106,17 @@ section.text_container {
 }
 
 .imgContainer {
-  width: 60vw;
+  width: 32vw;
   height: 40px;
   margin: 3em auto;
-  text-align: center;
+  padding: 1em;
+  /* text-align: center; */
   flex-direction: column;
-  align-items: space-between; 
+  /* align-items: space-between;  */
   font-family: 'Roboto', sans-serif; 
-  
+  border-radius: 10px;
+  background-color: white;
+  justify-items: space-between;
   
 }
 h1 {
@@ -135,11 +138,24 @@ article::-webkit-scrollbar{
   display: none;
 }
 
-.searchImage > * {
+.searchImage{
   height: 25px;
-  opacity: 0.6;
-  transition: 0.3s;
+  /* opacity: 0.6; */
+  /* transition: 0.3s; */
   border-radius: 10px;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-around;
+}
+
+.search-image-input{
+  
+  grid-column: 1;
+}
+
+.search-image-button{
+  
+  grid-column: 2;
 }
 
 .rocketSearch {
