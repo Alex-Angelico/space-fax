@@ -17,31 +17,42 @@
     </div>
     <div class="imgContainer">
       <form class="searchImage" action="/image-results" method="POST">
-        <input type="text" name="search" placeholder="search-query" id="search" required>
+        <input class="search-image-input" type="text" name="search" placeholder="search-query" id="search" required>
         <input type="hidden" name="search" value="image">
-        <button type="submit" class="imageSearch">NASA Image Search</button>
-      </form>
-      <form action="/launch-results">
-        <button class="rocketSearch">Upcoming Rocket Launches</button>
+        <button class="search-image-button" type="submit" class="imageSearch">NASA Image Search</button>
       </form>
     </div>
+    <section class="launch-tracker-title">
+      <h2 class="tracker-title">Launch Tracker</h2>
+      <form class="rocketSearch" action="/launch-results">
+        <button class="rocketSearch">Upcoming Rocket Launches</button>
+      </form>
+    </section>
     <ul class="tracked-launches">
       <% homePageObject[1].rows.forEach(launch => { %>
       <li class="tracked-launch">
-        <span class="topline-info"><p class="launch-labels">Date: </p><%=launch.date%></span>
-        <span class="topline-info"><p class="launch-labels">Provider: </p><%=launch.launchprovider%></span>
-        <span class="body-info"><p class="launch-labels">Mission: </p><%=launch.missionname%></span>
-        <span class="body-info"><p class="launch-labels"></p>Description: <%=launch.missiondescription%></span>
-        <span class="body-info"><p class="launch-labels">Orbital Profile: </p><%=launch.orbit%></span>
-        <span class="body-info"><p class="launch-labels">Vehicle: </p><%=launch.rocketname%></span>
+
+        <span class="date-label">Date: </span>
+        <span class="provider-label">Provider: </span>
+        <span class="mission-label">Mission: </span>
+        <span class="description-label">Description: </span>
+        <span class="orbital-label">Orbital Profile: </span>
+        <span class="vehicle-label">Vehicle: </span>
+
+        <p class="date-info"><%=launch.date%></p>
+        <p class="launchprovider-info"><%=launch.launchprovider%></p>
+        <p class="missionname-info"><%=launch.missionname%></p>
+        <p class="missiondescription-info"><%=launch.missiondescription%></p>
+        <p class="orbit-info"><%=launch.orbit%></p>
+        <p class="rocketname-info"><%=launch.rocketname%></p>
         <span class="status-info">
-        <h3><%=launch.statusname%></h3>
-        <p><%=launch.rocketstartwindow%></p>
-        <p><%=launch.rocketendwindow%></p>
-      </span>
-      <form action="/<%= launch.id %>?_warp=DELETE" method="POST">
-        <button class="remove_from_tracker" type="submit">Remove From Tracker</button>
-      </form>
+          <h3><%=launch.statusname%></h3>
+          <p><%=launch.rocketstartwindow%></p>
+          <p><%=launch.rocketendwindow%></p>
+        </span>
+        <form class="remove_from_tracker" action="/<%= launch.id %>?_warp=DELETE" method="POST">
+          <button type="submit">Remove From Tracker</button>
+        </form>
       </li>
 
       <% }) %>
