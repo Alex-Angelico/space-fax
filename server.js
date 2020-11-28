@@ -68,8 +68,8 @@ function renderAPODData(req, res) {
   let url = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk';
   let backup = `https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=${previousDate}`;
 
-  if (superagent.get(url)) {
-    return superagent.get(url)
+  if (superagent.get(backup)) {
+    return superagent.get(backup)
       .then(data => {
         return new FaX(data.body);
       })
@@ -193,7 +193,7 @@ function deleteTrackedLaunch(req, res) {
 }
 
 function renderUpcomingLaunches(req, res) {
-  let url = 'https://ll.thespacedevs.com/2.1.0/launch/upcoming?limit=3';
+  let url = 'https://ll.thespacedevs.com/2.1.0/launch/upcoming';
 
   superagent.get(url)
     .then(data => {
@@ -226,7 +226,7 @@ function Launch(rocket) {
   this.statusName = rocket.status ? rocket.status.name.toUpperCase() : 'Launch status unknown.';
   // these will be for detailed view
   this.missionDescription = rocket.mission ? rocket.mission.description : 'Mission description unavailable';
-  this.orbit = rocket.mission.orbit ? rocket.mission.orbit.name : 'Orbital profile unknown.';
+  this.orbit = rocket.mission ? rocket.mission.orbit.name : 'Orbital profile unknown.';
   this.rocketName = rocket.rocket.configuration ? rocket.rocket.configuration.name : 'Launch vehicle unknown.';
   this.rocketStartWindow = rocket.window_start ? rocket.window_start : 'Launch window opening unknown.';
   this.rocketEndWindow = rocket.window_end ? rocket.window_start : 'Launch window closing unknown.';

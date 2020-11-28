@@ -85,36 +85,121 @@
 
 /* this is for tracked launch results */
 
+.launch-tracker-title{
+  margin: auto;
+  margin-bottom: 5px;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  gap: 20%;
+  width: 60vw;
+  justify-content: space-between;
+}
+
 .tracked-launches {
   width: 60vw;
   display: grid;
   grid-template-columns: auto;
   align-items: end;
-  margin-top: 100px;
-  
+  height: auto;
+  padding-top: 10px;
 }
 
 .tracked-launch {
   max-width: 60vw;
-  /* grid-row: 1; */
   margin: 10px 0px;
-  background: white;
+  color: white;
   border-radius: 10px;
   text-align: justify;
   padding: 1em;
+  display: grid;
+  grid-template-columns: 100px auto auto;
+  grid-template-rows: auto auto auto auto auto auto;
+  gap: 15px 10px;
+  justify-content: stretch; 
+  font-family: 'Roboto', sans-serif;
+  background-color: #5e5e5e;
 }
 
-.status-info {
-  font-family: 'Orbitron', sans-serif;
-}
-
-.topline-info {
+/* .topline-info {
   font-family: 'Roboto', sans-serif;
 }
 
 .body-info {
   font-family: 'Roboto', sans-serif;
+} */
+
+.date-label{
+  grid-column: 1;
+  grid-row: 1;
 }
 
+.provider-label{
+  grid-column: 1;
+  grid-row: 2;
+}
 
+.mission-label{
+  grid-column: 1;
+  grid-row: 3;
+}
 
+.description-label{
+  grid-column: 1;
+  grid-row: 4;
+}
+
+.orbital-label{
+  grid-column: 1;
+  grid-row: 5;
+}
+
+.vehicle-label{
+  grid-column: 1;
+  grid-row: 6;
+}
+
+.date-info{
+  grid-column: 2;
+  grid-row: 1;
+  
+}
+
+.launchprovider-info{
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.missionname-info{
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.missiondescription-info{
+  grid-column: 2;
+  grid-row: 4;
+}
+
+.orbit-info{
+  grid-column: 2;
+  grid-row: 5;
+}
+
+.rocketname-info{
+  grid-column: 2;
+  grid-row: 6;
+}
+
+.status-info {
+  font-family: 'Orbitron', sans-serif;
+  grid-column: 3;
+  grid-row: 1 / 3;
+  justify-self: end;
+}
+
+.remove_from_tracker {
+  grid-column: 3;
+  grid-row: 6;
+  justify-self: end;
+}
