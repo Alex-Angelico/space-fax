@@ -20,17 +20,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 
-
 app.get('/', renderHomePage);
-
-// app.get('/', renderAPODData);
 app.get('/favorites', renderFavoriteImages);
 app.get('/launch-results', renderUpcomingLaunches);
 // app.get('/tracking', renderTrackedLaunches)
 
 app.post('/launch-results', trackLaunch);
 app.post('/image-results', searchImages);
-
 app.post('/favorites', addFavoriteImage);
 
 app.delete('/favorites/:id', deleteFavoriteImage);
@@ -46,71 +42,41 @@ function renderHomePage(req, res) {
     .then((results) => {
       res.render('index', { homePageObject: results });
     })
-    .catch(err => console.error(err));
+    .catch(err => console.error(err.status));
 }
 
 function getAPODDate() {
-  var x = new Date()
+  let date = new Date()
+  let dayUTC = date.getUTCDate();
 
-  var month = x.getMonth() + 1;
-  var day = x.getDate();
-  var year = x.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  let dayLocal = day;
+  let year = date.getFullYear();
   if (month < 10) { month = '0' + month; }
   if (day < 10) { day = '0' + day; }
 
-  var formattedDate = `${year}-${month}-${day - 1}`;
+  let localDate = `${year}-${month}-${day}`;
 
-  return formattedDate;
+  return [localDate, dayLocal, dayUTC];
 }
 
-function renderAPODData(req, res) {
-  let previousDate = getAPODDate();
-  let url = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk';
-  let backup = `https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=${previousDate}`;
+function renderAPODData() {
+  let dateAPOD = getAPODDate();
+  let newest = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk';
+  let current = `https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=${dateAPOD[0]}`;
 
-  if (superagent.get(backup)) {
-    return superagent.get(backup)
+  if (dateAPOD[1] === dateAPOD[2]) {
+    return superagent.get(newest)
       .then(data => {
         return new FaX(data.body);
       })
-      .catch(err => console.error(err));
   } else {
-    return superagent.get(backup)
+    return superagent.get(current)
       .then(data => {
         return new FaX(data.body);
       })
-      .catch(err => console.error(err));
   }
-
-  // superagent.get(url)
-  //   .then(data => {
-  //     return new FaX(data.body);
-  //   })
-  //   .then(result => {
-  //     res.render('index', { dailyUpdate: result });
-  //   })
-  //   .catch(err => console.error(err));
-
-  // if (superagent.get(url)) {
-  //   superagent.get(url)
-  //     .then(data => {
-  //       return new FaX(data.body);
-  //     })
-  //     .then(result => {
-  //       console.log(result);
-  //       res.render('index', { dailyUpdate: result });
-  //     })
-  //     .catch(err => console.error(err));
-  // } else {
-  //   superagent.get(backup)
-  //     .then(data => {
-  //       return new FaX(data.body);
-  //     })
-  //     .then(result => {
-  //       res.render('index', { dailyUpdate: result });
-  //     })
-  //     .catch(err => console.error(err));
-  // }
 }
 
 function searchImages(req, res) {
@@ -140,23 +106,14 @@ function renderFavoriteImages(req, res) {
     .catch(err => console.error(err))
 }
 
-function renderTrackedLaunches(req, res) {
+function renderTrackedLaunches() {
   let SQL = 'SELECT * FROM tracked_launches;';
 
   return client.query(SQL)
-
-  // return client.query(SQL)
-  //   .then(launches => {
-  //     console.log(launches);
-  //     // res.render('tracking', { trackedLaunches: launches.rows });
-  //     res.render('index', { trackedLaunches: launches.rows });
-  //   })
-  //   .catch(err => console.error(err))
 }
 
 function addFavoriteImage(req, res) {
   let { img_url, title } = req.body;
-  console.log(req.body);
   let SQL = 'INSERT INTO fav_images (img_url, title) VALUES ($1, $2);';
   let values = [img_url, title];
 
@@ -239,21 +196,6 @@ client.connect()
     });
   })
 client.on('error', err => console.err(err));
-
-
-// .then(resultObj => {
-//   console.log('resultObj:', resultObj);
-//   superagent.get(resultObj.href)
-//     .then(imageData => {
-//       // console.log('this should be some href stuff:', imageData);
-//     })
-// })
-
-// superagent.get(spaceImg.href)
-//     .then(results => {
-//       this.bigImg = results;
-//     })
-//   console.log('this is the bigImg:', bigImg);
 
 
 // app.get('/tracking/:id', trackedLaunchDetails);
