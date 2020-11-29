@@ -165,8 +165,8 @@ function renderUpcomingLaunches(req, res) {
 
 
 function SpaceImages(spaceImg) {
-  this.img_url = spaceImg.links ? spaceImg.links[0].href : 'No image found';
-  this.title = spaceImg.data ? spaceImg.data[0].title : 'No title available';
+  this.img_url = spaceImg.links ? spaceImg.links[0].href : 'No image found.';
+  this.title = spaceImg.data ? spaceImg.data[0].title : 'No title available.';
 }
 
 function FaX(spaceFaX) {
@@ -182,7 +182,7 @@ function Launch(rocket) {
   this.missionName = rocket.mission ? rocket.mission.name : 'Mission name unavailable.';
   this.statusName = rocket.status ? rocket.status.name.toUpperCase() : 'Launch status unknown.';
   // these will be for detailed view
-  this.missionDescription = rocket.mission ? rocket.mission.description : 'Mission description unavailable';
+  this.missionDescription = rocket.mission ? rocket.mission.description : 'Mission description unavailable.';
   this.orbit = rocket.mission ? rocket.mission.orbit.name : 'Orbital profile unknown.';
   this.rocketName = rocket.rocket.configuration ? rocket.rocket.configuration.name : 'Launch vehicle unknown.';
   this.rocketStartWindow = rocket.window_start ? rocket.window_start : 'Launch window opening unknown.';
