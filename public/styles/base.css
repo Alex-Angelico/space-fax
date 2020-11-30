@@ -8,11 +8,13 @@ body {
   /* background-color: #262626; */
   width: 98vw;
   margin: 0px auto;
-  background-attachment: local, scroll;
+  background-attachment: local, fixed;
+  /* background-attachment: fixed; */
   background: 
     url(../images/AdobeStock_119443713-removebg.png) left 1.5% center / 18% no-repeat,
-    url(../images/AdobeStock_119443713-removebg.png) right 1% center / 18% no-repeat rgb(11, 13, 128);
+    url(../images/AdobeStock_119443713-removebg.png) right 1% center / 18% no-repeat rgb(11, 13, 128);  
 }
+
 
 header {
   background-color: black;
@@ -226,8 +228,8 @@ button {
 
 button:hover{
   transition: 1s;
-  background: pink;
-  color: cornflowerblue;
+  background: #dd361c;
+  color: black;
 }
 
 footer {
@@ -237,7 +239,8 @@ footer {
   display: flex;
   justify-content: center;
   background-color: black;
-  font-family: Goldman, cursive;
+  /* font-family: Goldman, cursive; */
+  font-size: 3px;
   margin: 10px auto 0px;
   border-width: 3px;
   border-style: solid;
@@ -245,4 +248,5 @@ footer {
   border-image: initial;
   padding: 10px;
   border-radius: 10px 10px 0px 0px;
+  font-family: 'Orbitron', sans-serif;
 }

@@ -99,7 +99,7 @@
   display: grid;
   grid-template-columns: auto;
   padding-top: 10px;
-  height: 680px;
+  max-height: 680px;
   overflow-y: scroll;
 }
 
