@@ -13,15 +13,26 @@
       <section class="text_container">
         <h2><%= homePageObject[0].title %> </h2>
         <article><%= homePageObject[0].explanation %></article>
+
+        <div class="search-image-container">
+          <h3 class="search-image-title">Search for More Space Images</h3>
+          <form class="searchImage" action="/image-results" method="POST">
+            <input class="search-image-input" type="text" name="search" placeholder="Enter Keywords" id="search"
+              required>
+            <input type="hidden" name="search" value="image">
+            <button class="search-image-button" type="submit" class="imageSearch">NASA Image Search</button>
+          </form>
+        </div>
       </section>
+
     </div>
-    <div class="imgContainer">
+    <!-- <div class="search-image-container">
       <form class="searchImage" action="/image-results" method="POST">
         <input class="search-image-input" type="text" name="search" placeholder="Enter Keywords" id="search" required>
         <input type="hidden" name="search" value="image">
         <button class="search-image-button" type="submit" class="imageSearch">NASA Image Search</button>
       </form>
-    </div>
+    </div> -->
     <section class="launch-tracker-title">
       <h2 class="tracker-title">Launch Tracker</h2>
       <form class="rocketSearch" action="/launch-results">

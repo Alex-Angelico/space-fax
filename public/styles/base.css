@@ -5,9 +5,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
 body {
-  background-color: #262626;
-  width: 90vw;
+  /* background-color: #262626; */
+  width: 98vw;
   margin: 0px auto;
+  background-attachment: local, scroll;
+  background: 
+    url(../images/AdobeStock_119443713-removebg.png) left 1.5% center / 18% no-repeat,
+    url(../images/AdobeStock_119443713-removebg.png) right 1% center / 18% no-repeat rgb(11, 13, 128);
 }
 
 header {
@@ -24,6 +28,19 @@ header {
   width: 60vw;
   justify-content: space-between;
   z-index: 10000000000;
+}
+
+.logo_box {
+  width: 300px;
+  justify-content: space-between;
+}
+
+.logo_text {
+  display: inline-block;
+}
+
+.logo_img {
+  inline-size: 9%;
 }
 
 nav {
@@ -95,7 +112,7 @@ main {
   border-radius: 35px;
   width: 60vw;
   height: auto;
-  margin: auto;
+  margin: 15px auto;
   justify-content: center;
   align-content: center;
   background-color: white;
@@ -115,18 +132,20 @@ section.text_container {
   margin-left: 20px;
 }
 
-.imgContainer {
-  width: 32vw;
+.search-image-container {
+  text-align: center;
   height: 40px;
-  margin: 3em auto;
   padding: 1em;
   flex-direction: column;
   font-family: 'Roboto', sans-serif; 
-  border-radius: 10px;
-  background-color: white;
   justify-items: space-between;
-  
 }
+
+.search-image-title{
+  font-family: 'Goldman', cursive;
+  margin-bottom: 1em;
+}
+
 h1 {
   color: cadetblue;
   font-family: 'Goldman', cursive;
@@ -138,7 +157,7 @@ h2{
   font-family: 'Goldman', cursive;
 }
 article {
- max-height: 300px;
+ max-height: 225px;
  text-align: justify;
  overflow-y: scroll;
 }
@@ -209,4 +228,21 @@ button:hover{
   transition: 1s;
   background: pink;
   color: cornflowerblue;
+}
+
+footer {
+  text-align: center;
+  width: 60vw;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  font-family: Goldman, cursive;
+  margin: 10px auto 0px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: black;
+  border-image: initial;
+  padding: 10px;
+  border-radius: 10px 10px 0px 0px;
 }
