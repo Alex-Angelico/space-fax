@@ -6,25 +6,26 @@ function display_c() {
 }
 
 function display_ct() {
-  var x = new Date()
+  var zulu = new Date()
 
-  var month = x.getMonth() + 1;
-  var day = x.getDate();
-  var year = x.getFullYear();
+  var year = zulu.getUTCFullYear();
+  var month = zulu.getUTCMonth() + 1;
+  var day = zulu.getUTCDate();
   if (month < 10) { month = '0' + month; }
   if (day < 10) { day = '0' + day; }
-  var x3 = month + '-' + day + '-' + year;
+  var zuluDate = `${year}-${month}-${day}`;
 
   // time part //
-  var hour = x.getHours();
-  var minute = x.getMinutes();
-  var second = x.getSeconds();
+  var hour = zulu.getUTCHours();
+  var minute = zulu.getUTCMinutes();
+  var second = zulu.getUTCSeconds();
   if (hour < 10) { hour = '0' + hour; }
   if (minute < 10) { minute = '0' + minute; }
   if (second < 10) { second = '0' + second; }
-  var x3 = x3 + ' ' + hour + ':' + minute + ':' + second;
+  var zuluTime = `${hour}:${minute}:${second}`;
 
-  document.getElementById('ct').innerHTML = x3;
+  $('#zd').text(zuluDate);
+  $('#zt').text(zuluTime);
   display_c();
 }
 

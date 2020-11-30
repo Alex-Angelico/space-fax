@@ -1,47 +1,57 @@
 @import "reset.css";
 @import "layout.css";
 
-/* @font-face{
-  font-family:'digital-7';
-  src: url('https://www.1001fonts.com/digital-7-font.html');
- } */
-* {
-  justify-content: center;
-  align-content: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
 body {
   background-color: #262626;
   width: 90vw;
-  margin: 20px auto;
+  margin: 0px auto;
 }
 
 header {
-  height: 60px;
+  background-color: black;
+  padding: 10px 10px;
+  border-radius: 0 0 10px 10px;
+  position: fixed;
+  top: 0%;
+  left: 19.3%;
+  display: flex;
+  max-height: 150px;
   color: whitesmoke;
-  margin: auto;
+  margin: 0 auto 0 auto;
   width: 60vw;
+  justify-content: space-between;
+  z-index: 10000000000;
 }
 
 nav {
   display: flex;
   justify-content: space-around;
-
 }
 
 ul {
   display: flex;
   flex-direction: row;
-  align-content: center;
   margin: auto;
 }
 
-nav li {
-  margin: auto;
+li {
   padding: 10px 15px;
   border: 1px solid black;
-  border-radius: 10px 10px 0px 0px;
-  font-family: 'Press Start 2P', cursive;
+  background-color: #5e5e5e;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+nav li {
+  margin: auto 5px;
+  border: 1px solid black;
+  background-color: #5e5e5e;
+  border-radius: 10px;
+  font-family: 'Goldman', cursive;
+  color: black;
 }
 
 nav li:hover {
@@ -57,23 +67,23 @@ a:link {
 }
 
 .clock_box {
-  width: 200px;
-  margin-left: auto;
-  justify-content: center;
-  align-items: center;
-  padding-left: 15px;
-  padding-top: 22px;
-  font-size: 12px;
-}
-
-header > .clock_box {
-justify-self: right;
+  width: 150px;
+  text-align: right;
+  font-size: 1em;
+  text-shadow: 0px 0px 25px rgb(173, 172, 235);
+  color: white;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .status-info {
-  font-family: digital-7;
   text-shadow: 0px 0px 25px rgb(173, 172, 235);
   color: white;
+  font-family: 'Orbitron', sans-serif;
+}
+
+main {
+  margin: 85px auto 0 auto;
+  width: 60vw;
 }
 
 .daily_content {
@@ -110,9 +120,7 @@ section.text_container {
   height: 40px;
   margin: 3em auto;
   padding: 1em;
-  /* text-align: center; */
   flex-direction: column;
-  /* align-items: space-between;  */
   font-family: 'Roboto', sans-serif; 
   border-radius: 10px;
   background-color: white;
@@ -121,12 +129,13 @@ section.text_container {
 }
 h1 {
   color: cadetblue;
-  font-family: 'Press Start 2P', cursive;
-  font-size: x-large;
+  font-family: 'Goldman', cursive;
+  font-size: 4em;
 }
 h2{
   font-size: 2em;
   margin-bottom: 10px;
+  font-family: 'Goldman', cursive;
 }
 article {
  max-height: 300px;
@@ -140,8 +149,6 @@ article::-webkit-scrollbar{
 
 .searchImage{
   height: 25px;
-  /* opacity: 0.6; */
-  /* transition: 0.3s; */
   border-radius: 10px;
   display: grid;
   grid-template-columns: auto auto;
@@ -149,12 +156,10 @@ article::-webkit-scrollbar{
 }
 
 .search-image-input{
-  
   grid-column: 1;
 }
 
 .search-image-button{
-  
   grid-column: 2;
 }
 
@@ -173,7 +178,6 @@ article::-webkit-scrollbar{
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 20px 15px;
-  
 }
 
 .searchImageContainer {
@@ -187,7 +191,6 @@ article::-webkit-scrollbar{
   position: absolute;
   bottom: 10%;
   left: 15%;
-  
 }
 
 .searchImage {
@@ -206,5 +209,4 @@ button:hover{
   transition: 1s;
   background: pink;
   color: cornflowerblue;
-  
 }
