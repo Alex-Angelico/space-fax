@@ -40,11 +40,12 @@ header {
 .logo_text {
   vertical-align: text-bottom;
   display: inline;
+  font-size: 40px;
 }
 
 .logo_img {
   display: inline;
-  width: 60px;
+  width: 40px;
 }
 
 nav {
