@@ -121,72 +121,61 @@
   padding: 1em;
   display: grid;
   grid-template-columns: 100px auto auto;
-  grid-template-rows: auto auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto;
   gap: 15px 10px;
   justify-content: stretch; 
   font-family: 'Roboto', sans-serif;
   background-color: #5e5e5e;
 }
 
-.date-label{
-  grid-column: 1;
-  grid-row: 1;
-}
-
 .provider-label{
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 1;
 }
 
 .mission-label{
   grid-column: 1;
-  grid-row: 3;
+  grid-row: 2;
 }
 
 .description-label{
   grid-column: 1;
-  grid-row: 4;
+  grid-row: 3;
 }
 
 .orbital-label{
   grid-column: 1;
-  grid-row: 5;
+  grid-row: 4;
 }
 
 .vehicle-label{
   grid-column: 1;
-  grid-row: 6;
-}
-
-.date-info{
-  grid-column: 2;
-  grid-row: 1;
-  
+  grid-row: 5;
 }
 
 .launchprovider-info{
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 1;
 }
 
 .missionname-info{
   grid-column: 2;
-  grid-row: 3;
+  grid-row: 2;
 }
 
 .missiondescription-info{
   grid-column: 2;
-  grid-row: 4;
+  grid-row: 3;
 }
 
 .orbit-info{
   grid-column: 2;
-  grid-row: 5;
+  grid-row: 4;
 }
 
 .rocketname-info{
   grid-column: 2;
-  grid-row: 6;
+  grid-row: 5;
 }
 
 .status-info {
@@ -195,15 +184,14 @@
   color: white;
   grid-column: 3;
   grid-row: 1 / 3;
-  justify-self: end;
+  text-align: right;
 }
 
 .remove_from_tracker {
   grid-column: 3;
-  grid-row: 6;
+  grid-row: 5;
   justify-self: end;
 }
-
 
 /* Launch results  */
 
@@ -220,42 +208,46 @@
   height: 12.5em;
   position: relative;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 23% 77%;
   grid-template-rows: max-content max-content auto max-content;
   gap: .5vw;
   font-family: 'Roboto', sans-serif;
   
 }
 
-.search_date-label{
-  grid-column: 1;
-  grid-row: 1;
-}
-
 .search_provider-label{
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 1;
+  color: white;
 }
 
 .search_mission-label{
   grid-column: 1;
-  grid-row: 3;
-}
-
-.search_date_info{
-  grid-column: 2;
-  grid-row: 1;
+  grid-row: 2;
+  color: white;
 }
 
 .search_launch_provider{
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 1;
+  color: white;
 }
 
 .search_launch_mission_name{
   grid-column: 2;
-  grid-row: 3;
+  grid-row: 2;
   overflow-y: scroll;
+  color: white;
+}
+
+.search_date_info{
+  grid-column: 1 / 3;
+  grid-row: 3;
+  justify-self: center;
+  align-self: center;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0px 0px 25px rgb(173, 172, 235);
+  color: white;
 }
 
 .search_launch_mission_name::-webkit-scrollbar{
@@ -285,16 +277,10 @@
   width: 200px;
   border-radius: 30px;
   padding: 10px;
-  
 }
 
 .about-us {
   text-align: center;
-  padding: 20px;
-}
-
-.aboutus-main {
-  padding: 10px;
 }
 
 .classlinks {
@@ -318,6 +304,8 @@ h5 {
 }
 
 .h2aboutus {
+  font-size: x-large;
+  font-family: 'Goldman', cursive;
   color: white;
   text-shadow: 0px 0px 25px rgb(173, 172, 235);
 }
