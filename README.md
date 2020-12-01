@@ -8,7 +8,7 @@ Jordan Kidwell, Audrena Vacirca, Ricardo Barceras, Alex Angelico
 
 ## Description
 
-A source for customizable daily sapce facts based on user-selected interests.
+A source for customizable daily space facts based on user-selected interests.
 
 ---
 
