@@ -10,16 +10,13 @@
   <main>
     <ul class="search_launch_parent">
       <% launchList.forEach(launch => { %>
-      <li class="search_launch_container">
-
-        <span class="search_date-label">Date: </span>
+      <li id="<%=launch.data_id%>" class="search_launch_container">
         <span class="search_provider-label">Provider: </span>
         <span class="search_mission-label">Mission: </span>
-        
 
-        <h3 class="search_date_info"><%=launch.date%></h3>
         <h3 class="search_launch_provider"><%=launch.launchProvider%></h3>
         <h3 class="search_launch_mission_name"><%=launch.missionName%></h3>
+        <h3 class="search_date_info"><%=launch.launchDate%></h3>
         <h3 class="search_launch_status"><%=launch.statusName%></h3>
         <form action="/launch-results" method="POST">
           <input type="hidden" name="launch" value="<%= JSON.stringify(launch) %>"></input>

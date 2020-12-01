@@ -25,7 +25,6 @@ app.get('/', renderHomePage);
 app.get('/favorites', renderFavoriteImages);
 app.get('/launch-results', renderUpcomingLaunches);
 app.get('/about-us', renderAboutUsPage);
-// app.get('/tracking', renderTrackedLaunches)
 
 app.post('/launch-results', trackLaunch);
 app.post('/image-results', searchImages);
@@ -33,8 +32,6 @@ app.post('/favorites', addFavoriteImage);
 
 app.delete('/favorites/:id', deleteFavoriteImage);
 app.delete('/:id', deleteTrackedLaunch);
-
-
 
 function renderHomePage(req, res) {
   const promise1 = renderAPODData();
@@ -126,9 +123,9 @@ function addFavoriteImage(req, res) {
 
 function trackLaunch(req, res) {
   const trackedLaunch = JSON.parse(req.body.launch);
-  let { date, launchProvider, missionName, statusName, missionDescription, orbit, rocketName, rocketStartWindow, rocketEndWindow } = trackedLaunch;
-  let SQL = 'INSERT INTO tracked_launches (date, launchProvider, missionName, statusName, missionDescription, orbit, rocketName, rocketStartWindow, rocketEndWindow) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);';
-  let values = [date, launchProvider, missionName, statusName, missionDescription, orbit, rocketName, rocketStartWindow, rocketEndWindow];
+  let { data_id, launchDate, launchTime, launchProvider, missionName, statusName, missionDescription, orbit, rocketName } = trackedLaunch;
+  let SQL = 'INSERT INTO tracked_launches (data_id, launchDate, launchTime, launchProvider, missionName, statusName, missionDescription, orbit, rocketName) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);';
+  let values = [data_id, launchDate, launchTime, launchProvider, missionName, statusName, missionDescription, orbit, rocketName];
 
   return client.query(SQL, values)
     .then(res.redirect('/'))
@@ -152,7 +149,7 @@ function deleteTrackedLaunch(req, res) {
 }
 
 function renderUpcomingLaunches(req, res) {
-  let url = `https://ll.thespacedevs.com/2.1.0/launch/upcoming?limit=4&key=${API_KEY}`;
+  let url = `https://ll.thespacedevs.com/2.1.0/launch/upcoming?limit=100&key=${API_KEY}`;
 
   superagent.get(url)
     .then(data => {
@@ -180,18 +177,57 @@ function FaX(spaceFaX) {
   this.explanation = spaceFaX.explanation;
 }
 
+// function Launch(rocket) {
+//   // these will be for search
+//   this.date = rocket.net ? rocket.net : 'No launch date yet.';
+//   this.launchProvider = rocket.launch_service_provider ? rocket.launch_service_provider.name : 'Unknown launch provider.';
+//   this.missionName = rocket.mission ? rocket.mission.name : 'Mission name unavailable.';
+//   this.statusName = rocket.status ? rocket.status.name.toUpperCase() : 'Launch status unknown.';
+//   // these will be for detailed view
+//   this.missionDescription = rocket.mission ? rocket.mission.description : 'Mission description unavailable.';
+//   this.orbit = rocket.mission ? rocket.mission.orbit.name : 'Orbital profile unknown.';
+//   this.rocketName = rocket.rocket.configuration ? rocket.rocket.configuration.name : 'Launch vehicle unknown.';
+//   this.rocketStartWindow = rocket.window_start ? rocket.window_start : 'Launch window opening unknown.';
+//   this.rocketEndWindow = rocket.window_end ? rocket.window_start : 'Launch window closing unknown.';
+// }
+
 function Launch(rocket) {
   // these will be for search
-  this.date = rocket.net ? rocket.net : 'No launch date yet.';
+  this.data_id = rocket.id;
+  this.launchDate = rocket.net ? rocket.net.slice(0, 10) : 'No launch date yet.';
+  this.launchTime = rocket.net ? rocket.net.slice(11, 19) : 'No launch time yet.';
+  if (this.launchTime === '00:00:00') {
+    this.launchTime = 'No launch time yet.';
+  }
   this.launchProvider = rocket.launch_service_provider ? rocket.launch_service_provider.name : 'Unknown launch provider.';
   this.missionName = rocket.mission ? rocket.mission.name : 'Mission name unavailable.';
   this.statusName = rocket.status ? rocket.status.name.toUpperCase() : 'Launch status unknown.';
   // these will be for detailed view
   this.missionDescription = rocket.mission ? rocket.mission.description : 'Mission description unavailable.';
-  this.orbit = rocket.mission ? rocket.mission.orbit.name : 'Orbital profile unknown.';
+  this.missionDescription = this.missionDescription.split('');
+  let missionDescriptionParse = this.missionDescription.map((character, i, array) => {
+    if (character !== '\n') {
+      return character;
+    } else if (character === '\n' && array[i + 1] !== '\n') {
+      character = ' ';
+      return character;
+    }
+  })
+  this.missionDescription = missionDescriptionParse.join('');
+  if (rocket.mission) {
+    if (rocket.mission.orbit) {
+      if (rocket.mission.orbit.name) {
+        this.orbit = rocket.mission.orbit.name
+      } else {
+        this.orbit = 'Orbital profile unknown.';
+      }
+    } else {
+      this.orbit = 'Orbital profile unknown.';
+    }
+  } else {
+    this.orbit = 'Orbital profile unknown.';
+  }
   this.rocketName = rocket.rocket.configuration ? rocket.rocket.configuration.name : 'Launch vehicle unknown.';
-  this.rocketStartWindow = rocket.window_start ? rocket.window_start : 'Launch window opening unknown.';
-  this.rocketEndWindow = rocket.window_end ? rocket.window_start : 'Launch window closing unknown.';
 }
 
 client.connect()
@@ -201,15 +237,3 @@ client.connect()
     });
   })
 client.on('error', err => console.err(err));
-
-
-// app.get('/tracking/:id', trackedLaunchDetails);
-// function trackedLaunchDetails(req, res) {
-//   let SQL = 'SELECT * FROM launch_schedule WHERE id=$1;';
-//   let values = [req.params.id];
-
-//   return client.query(SQL, values)
-//     .then(data => {
-//       res.render('tracking/:id')
-//     })
-// }
