@@ -194,3 +194,56 @@
   grid-row: 6;
   justify-self: end;
 }
+
+/* this is for about us page */
+
+.photo {
+  width: 200px;
+  border-radius: 30px;
+  padding: 10px;
+  
+}
+
+.about-us {
+  text-align: center;
+  padding: 20px;
+}
+
+.aboutus-main {
+  padding: 10px;
+}
+
+.classlinks {
+  font-size: 1em;
+  background-color: transparent;
+  text-decoration: none;
+  font-family: 'Goldman', cursive;
+  padding: 10px;
+  color:  cadetblue;
+}
+
+.classlinks:link {
+  font-size: 1em;
+  padding: 10px;
+}
+
+h5 {
+  font-family: 'Goldman', cursive;
+  font-size: 15px;
+  color: white;
+}
+
+.h2aboutus {
+  color: white;
+  text-shadow: 0px 0px 25px rgb(173, 172, 235);
+}
+
+.favorite-space {
+  color: white;
+  padding: 5px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.personalSection {
+  padding: 25px;
+}
