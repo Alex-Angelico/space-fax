@@ -81,15 +81,26 @@
 /* this is for tracked launch results */
 
 .launch-tracker-title{
-  margin: auto;
   margin-bottom: 5px;
+  margin-top: 5px;
   display: grid;
-  justify-items: center;
   grid-template-columns: auto auto;
   grid-template-rows: auto;
-  gap: 20%;
   width: 60vw;
-  justify-content: space-between;
+  background: white;
+  border-radius: 10px;
+}
+
+.tracker-title{
+  align-self: center;
+  justify-self: center;
+  font-size: 2em;
+  font-family: 'Goldman', cursive;
+}
+
+.rocketSearch{
+  align-self: center;
+  justify-self: center;
 }
 
 .tracked-launches {
