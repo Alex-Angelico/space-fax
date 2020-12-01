@@ -8,7 +8,7 @@ Jordan Kidwell, Audrena Vacirca, Ricardo Barceras, Alex Angelico
 
 ## Description
 
-A source for customizable daily sapce facts based on user-selected interests.
+A source for customizable daily space facts based on user-selected interests.
 
 ---
 
@@ -189,3 +189,23 @@ Aim for all
 **favorite Launches:**  
 
 ![Favorite Launches](/readme/wireframe5.png)
+
+---
+
+### Technical Sources
+
+[Date & Time Function:](https://www.plus2net.com/javascript_tutorial/clock.php)  
+[Multiple API Calls with Promise.all()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)  
+[Date.UTC()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC)  
+
+### Design Sources
+
+#### Fonts
+
+[Goldman](https://fonts.google.com/specimen/Goldman)  
+[Orbitron](https://fonts.google.com/specimen/Orbitron)  
+[Roboto](https://fonts.google.com/specimen/Roboto)  
+
+#### Graphics
+
+[Rocket Logo](https://stock.adobe.com/images/rocket-launcher-start-up-concept/119443713?asset_id=119443713)

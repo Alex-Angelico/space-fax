@@ -1,1 +1,261 @@
 @import "reset.css";
+@import "layout.css";
+@import "media.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+body {
+  width: 98vw;
+  margin: 0px auto;
+  background: 
+    url(../images/space-logo3.png) left 1.5% center / 18% no-repeat fixed,
+    url(../images/space-logo3.png) right 1% center / 18% no-repeat fixed rgb(21, 23, 150);  
+}
+
+
+header {
+  background-color: black;
+  padding: 10px 10px;
+  border-radius: 0 0 10px 10px;
+  position: fixed;
+  top: 0%;
+  left: 19.3%;
+  display: flex;
+  max-height: 150px;
+  color: whitesmoke;
+  margin: 0 auto 0 auto;
+  width: 60vw;
+  justify-content: space-between;
+  z-index: 10000000000;
+  align-items: center;
+}
+
+.logo_box {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+}
+
+.logo_text {
+  vertical-align: text-bottom;
+  display: inline;
+}
+
+.logo_img {
+  display: inline;
+  width: 60px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+}
+
+li {
+  padding: 10px;
+  border: 1px solid black;
+  background-color: #5e5e5e;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+nav li {
+  margin: auto 5px;
+  border: 1px solid black;
+  background-color: #5e5e5e;
+  border-radius: 10px;
+  font-family: 'Goldman', cursive;
+  color: black;
+  width: 6vw;
+  max-height: 50px;
+  font-size: 14px;
+  text-align: center;
+}
+
+nav li:hover {
+  transition: 500;
+  background-color: white;
+  box-shadow: 0 0 10px white;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.clock_box {
+  width: 150px;
+  text-align: right;
+  font-size: 1em;
+  text-shadow: 0px 0px 25px rgb(173, 172, 235);
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+}
+
+main {
+  margin: 100px auto 100px auto;
+  width: 60vw;
+}
+
+.daily_content {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  /* padding: 2em; */
+  padding-top: 2em;
+  padding-bottom: 2em;
+  border-radius: 35px;
+  width: 60vw;
+  height: auto;
+  margin: 15px auto;
+  justify-content: center;
+  align-content: center;
+  background-color: white;
+}
+
+.daily_img {
+  width: 100%;
+  max-height:400px;
+  border-radius: 10px;
+  margin-right: 20px;
+  width: 27vw;
+}
+
+section.text_container {
+  font-family: 'Roboto', sans-serif;
+  max-height: 400px;
+  margin-left: 20px;
+  width: 27vw;
+}
+
+.search-image-container {
+  text-align: center;
+  height: 40px;
+  padding: 1em;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif; 
+  justify-items: space-between;
+}
+
+.search-image-title{
+  font-family: 'Goldman', cursive;
+  margin-bottom: 1em;
+}
+
+h1 {
+  color: cadetblue;
+  font-family: 'Goldman', cursive;
+  font-size: 4em;
+}
+.daily_title{
+  margin-bottom: 10px;
+  font-size: 2em;
+  font-family: 'Goldman', cursive;
+}
+article {
+ max-height: 225px;
+ text-align: justify;
+ overflow-y: scroll;
+}
+
+article::-webkit-scrollbar{
+  display: none;
+}
+
+.searchImage{
+  height: 25px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-around;
+}
+
+.search-image-input{
+  grid-column: 1;
+}
+
+.search-image-button{
+  grid-column: 2;
+}
+
+.rocketSearch {
+  height: 40px;
+  border-radius: 10px;
+  background-color: gray;
+
+}
+
+.rocketSearch {
+  color: black;
+}
+
+.searchImageParent {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 20px 15px;
+}
+
+.searchImageContainer {
+  max-width: 250px;
+  align-content: center;
+  position: relative;
+  height: 400px;
+}
+
+.searchImageContainer button {
+  position: absolute;
+  bottom: 10%;
+  left: 15%;
+}
+
+.searchImage {
+  height: 40px;
+  padding-bottom: .5em;
+  overflow: hidden;
+  
+}
+
+button {
+  border-radius: 10px;
+  background-color: gray;
+  color: black;
+}
+
+button:hover{
+  transition: 1s;
+  background: #dd361c;
+}
+
+footer {
+  text-align: center;
+  width: 60vw;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: black;
+  font-size: 15px;
+  /* margin: 0 auto; */
+  border-width: 3px;
+  border-style: solid;
+  border-color: black;
+  border-image: initial;
+  padding: 10px;
+  border-radius: 10px 10px 0px 0px;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  position: fixed;
+  bottom: 0%;
+  left: 19.3%;
+}
+
+footer a {
+  color: white;
+  font-size: 15px;
+}

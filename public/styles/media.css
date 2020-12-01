@@ -1,0 +1,250 @@
+@media screen and (max-width: 700px){
+
+  /* this is for search results css */
+  .addImageParent{
+    padding-top: 20px;
+    margin-top: 120px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1vw 1vw;
+    
+  }
+  
+  .addImageContainer{
+    height: 200px;
+    position: relative;
+    display: grid;
+    grid-template-columns: auto;
+  }
+  
+  .addImage{
+    padding-bottom: 0.5em;
+    width: 100%;
+    max-height: 200px;
+    border-radius: 10px;
+  }
+  
+  .image_title{
+    padding-bottom: 0.5em;
+    height: 30px;
+    color: white;
+    font-size: 0.8em;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .add_to_favorites{
+    position: absolute;
+    width: 100%;
+    bottom: 5%;
+    left: 0%;
+  
+  }
+
+
+
+  /* this is favorites gallery css */
+
+.favorite_parent{
+  padding-top: 20px;
+  margin-top: 120px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1vw 1vw;
+  
+}
+
+.fav_images{
+  height: 200px;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: max-content;
+}
+
+.saved_images{
+  padding-bottom: 0.5em;
+  width: 100%;
+  max-height: 200px;
+  border-radius: 10px;
+}
+
+.fav_title{
+  padding-bottom: 0.5em;
+  height: 0.8em;
+  color: white;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.remove_from_favorites{
+  position: absolute;
+  width: 100%;
+  bottom: 0%;
+  left: 0%;
+}
+
+
+
+/* modular homepage */
+
+body {
+  
+  background-attachment: local, fixed;
+  /* background-attachment: fixed; */
+  background: 
+    url(../images/space-logo3.png) left 1.5% center / 18% no-repeat,
+    url(../images/space-logo3.png) right 1% center / 18% no-repeat rgb(11, 13, 128);  
+}
+
+main{
+  margin: auto;
+  width: 100%;
+}
+
+.daily_content{
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  gap: 1vw;
+
+  padding-top: 2em;
+  padding-bottom: 2em;
+  border: 2px solid white;
+  border-radius: 35px;
+  justify-content: center;
+  align-content: center;
+  background-color: white;
+}
+
+.daily_img{
+  height: auto;
+  width: 100%;
+  grid-column: 1;
+  grid-row: 1;
+  border-radius: 10px;
+  margin-right: 1vw;
+}
+
+.text_container{
+  width: 100%;
+  height: auto;
+  grid-column: 1;
+  grid-row: 2;
+}
+  
+}
+
+
+
+@media screen and (min-width: 701px) and (max-width: 1100px){
+
+  /* this is for search results css */
+  .addImageParent{
+    padding-top: 20px;
+    margin-top: 120px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 20px 1vw;
+    
+  }
+  
+  .addImageContainer{
+    height: 200px;
+    position: relative;
+    display: grid;
+    grid-template-columns: auto;
+  }
+  
+  .addImage{
+    /* padding-bottom: 0.1em; */
+    width: 100%;
+    max-height: 200px;
+    border-radius: 10px;
+  }
+  
+  .image_title{
+    padding-bottom: 0.5em;
+    height: max-content;
+    color: white;
+    font-size: 0.8em;
+    text-align: center;
+    /* overflow: hidden; */
+  }
+  
+  .add_to_favorites{
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+    left: 0%;
+  
+  }
+
+
+
+  /* this is favorites gallery css */
+
+.favorite_parent{
+  padding-top: 20px;
+  margin-top: 120px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 1vw 1vw;
+  
+}
+
+.fav_images{
+  height: 200px;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.saved_images{
+  padding-bottom: 0.5em;
+  width: 100%;
+  max-height: 200px;
+  border-radius: 10px;
+}
+
+.fav_title{
+  padding-bottom: 0.5em;
+  height: 0.8em;
+  color: white;
+  font-size: 0.8em;
+  text-align: center;
+
+}
+
+
+
+  /* modular homepage */
+.remove_from_favorites{
+  position: absolute;
+  width: 100%;
+  bottom: 0%;
+  left: 0%;
+}
+
+.daily_content{
+  height: auto;
+  display: grid;
+  grid-template-columns: 40vw;
+  grid-template-rows: auto auto;
+}
+
+.daily_img{
+  height: 200px;
+  width: 100%;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.text_container{
+  grid-column: 1;
+  grid-row: 2;
+}
+
+}
