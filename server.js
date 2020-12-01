@@ -12,7 +12,8 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 const client = new pg.Client(process.env.DATABASE_URL);
-const API_KEY = process.env.API_KEY
+const NASA_API_KEY = process.env.NASA_API_KEY;
+const LL_API_KEY = process.env.LL_API_KEY;
 
 app.use(cors());
 app.use(methodOverride('_warp'));
@@ -62,8 +63,8 @@ function getAPODDate() {
 
 function renderAPODData() {
   let dateAPOD = getAPODDate();
-  let newest = 'https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk';
-  let current = `https://api.nasa.gov/planetary/apod?api_key=tpyerW9B64hL6VL3kBNEvRgba4gVOAtlugwQmPhk&date=${dateAPOD[0]}`;
+  let newest = `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`;
+  let current = `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}&date=${dateAPOD[0]}`;
 
   if (dateAPOD[1] === dateAPOD[2]) {
     return superagent.get(newest)
@@ -149,7 +150,7 @@ function deleteTrackedLaunch(req, res) {
 }
 
 function renderUpcomingLaunches(req, res) {
-  let url = `https://ll.thespacedevs.com/2.1.0/launch/upcoming?limit=100&key=${API_KEY}`;
+  let url = `https://ll.thespacedevs.com/2.1.0/launch/upcoming?key=${LL_API_KEY}&limit=100`;
 
   superagent.get(url)
     .then(data => {
