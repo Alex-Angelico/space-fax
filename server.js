@@ -23,6 +23,7 @@ app.set('view engine', 'ejs');
 app.get('/', renderHomePage);
 app.get('/favorites', renderFavoriteImages);
 app.get('/launch-results', renderUpcomingLaunches);
+app.get('/about-us', renderAboutUsPage);
 // app.get('/tracking', renderTrackedLaunches)
 
 app.post('/launch-results', trackLaunch);
@@ -163,6 +164,9 @@ function renderUpcomingLaunches(req, res) {
     .catch(err => console.error(err));
 }
 
+function renderAboutUsPage(req, res) {
+  res.render('about-us');
+}
 
 function SpaceImages(spaceImg) {
   this.img_url = spaceImg.links ? spaceImg.links[0].href : 'No image found.';
