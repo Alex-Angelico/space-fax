@@ -12,6 +12,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 const client = new pg.Client(process.env.DATABASE_URL);
+const API_KEY = process.env.API_KEY
 
 app.use(cors());
 app.use(methodOverride('_warp'));
@@ -151,7 +152,7 @@ function deleteTrackedLaunch(req, res) {
 }
 
 function renderUpcomingLaunches(req, res) {
-  let url = 'https://ll.thespacedevs.com/2.1.0/launch/upcoming';
+  let url = `https://ll.thespacedevs.com/2.1.0/launch/upcoming?limit=4&key=${API_KEY}`;
 
   superagent.get(url)
     .then(data => {
