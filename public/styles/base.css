@@ -12,8 +12,8 @@ body {
   background-attachment: local, fixed;
   /* background-attachment: fixed; */
   background: 
-    url(../images/AdobeStock_119443713-removebg.png) left 1.5% center / 18% no-repeat,
-    url(../images/AdobeStock_119443713-removebg.png) right 1% center / 18% no-repeat rgb(11, 13, 128);  
+    url(../images/space-logo3.png) left 1.5% center / 18% no-repeat,
+    url(../images/space-logo3.png) right 1% center / 18% no-repeat rgb(21, 23, 150);  
 }
 
 
@@ -34,16 +34,22 @@ header {
 }
 
 .logo_box {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
   width: 30%;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .logo_text {
-  display: inline-block;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .logo_img {
-  inline-size: 9%;
+  grid-column: 2;
+  grid-row: 1;
+  width: 10%;
 }
 
 nav {
@@ -96,7 +102,7 @@ a:link {
 }
 
 main {
-  margin: 85px auto 0 auto;
+  margin: 100px auto 0 auto;
   width: 60vw;
 }
 
@@ -149,9 +155,9 @@ h1 {
   font-family: 'Goldman', cursive;
   font-size: 4em;
 }
-h2{
-  font-size: 2em;
+.daily_title{
   margin-bottom: 10px;
+  font-size: 2em;
   font-family: 'Goldman', cursive;
 }
 article {

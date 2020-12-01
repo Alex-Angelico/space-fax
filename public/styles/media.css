@@ -93,8 +93,8 @@ body {
   background-attachment: local, fixed;
   /* background-attachment: fixed; */
   background: 
-    url(../images/AdobeStock_119443713-removebg.png) left 1.5% center / 18% no-repeat,
-    url(../images/AdobeStock_119443713-removebg.png) right 1% center / 18% no-repeat rgb(11, 13, 128);  
+    url(../images/space-logo3.png) left 1.5% center / 18% no-repeat,
+    url(../images/space-logo3.png) right 1% center / 18% no-repeat rgb(11, 13, 128);  
 }
 
 main{
