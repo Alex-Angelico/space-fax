@@ -89,6 +89,7 @@
   width: 60vw;
   background: white;
   border-radius: 10px;
+  
 }
 
 .tracker-title{
@@ -208,9 +209,10 @@
   height: 12.5em;
   position: relative;
   display: grid;
-  grid-template-columns: 23% 77%;
+  grid-template-columns: 27% 73%;
   grid-template-rows: max-content max-content auto max-content;
-  gap: .5vw;
+  column-gap: 1vw;
+  row-gap: .5vw;
   font-family: 'Roboto', sans-serif;
   
 }
