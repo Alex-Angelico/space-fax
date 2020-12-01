@@ -39,10 +39,6 @@
 
 /* this is for search results css */
 
-.image-results-body{
-
-}
-
 .addImageParent{
   padding-top: 20px;
   display: grid;
@@ -184,6 +180,8 @@
 
 .status-info {
   font-family: 'Orbitron', sans-serif;
+  text-shadow: 0px 0px 25px rgb(173, 172, 235);
+  color: white;
   grid-column: 3;
   grid-row: 1 / 3;
   justify-self: end;
@@ -193,4 +191,78 @@
   grid-column: 3;
   grid-row: 6;
   justify-self: end;
+}
+
+/* Launch results  */
+
+.search_launch_parent{
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 20px 1vw;
+  max-width: 60vw;
+  
+}
+
+.search_launch_container{
+  height: 12.5em;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: max-content max-content auto max-content;
+  gap: .5vw;
+  font-family: 'Roboto', sans-serif;
+  
+}
+
+.search_date-label{
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.search_provider-label{
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.search_mission-label{
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.search_date_info{
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.search_launch_provider{
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.search_launch_mission_name{
+  grid-column: 2;
+  grid-row: 3;
+  overflow-y: scroll;
+}
+
+.search_launch_mission_name::-webkit-scrollbar{
+  display: none;
+}
+
+.search_launch_status{
+  grid-column: 1 / 3;
+  grid-row: 4;
+  justify-self: center;
+  align-self: center;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0px 0px 25px rgb(173, 172, 235);
+  color: white;
+}
+
+.search_track_launch{
+  position: absolute;
+  width: 100%;
+  bottom: 0%;
+  left: 0%;
 }
