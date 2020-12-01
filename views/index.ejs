@@ -13,7 +13,6 @@
       <section class="text_container">
         <h2 class="daily_title"><%= homePageObject[0].title %> </h2>
         <article><%= homePageObject[0].explanation %></article>
-
         <div class="search-image-container">
           <h3 class="search-image-title">Search for More Space Images</h3>
           <form class="searchImage" action="/image-results" method="POST">
@@ -24,15 +23,7 @@
           </form>
         </div>
       </section>
-
     </div>
-    <!-- <div class="search-image-container">
-      <form class="searchImage" action="/image-results" method="POST">
-        <input class="search-image-input" type="text" name="search" placeholder="Enter Keywords" id="search" required>
-        <input type="hidden" name="search" value="image">
-        <button class="search-image-button" type="submit" class="imageSearch">NASA Image Search</button>
-      </form>
-    </div> -->
     <section class="launch-tracker-title">
       <h2 class="tracker-title">Launch Tracker</h2>
       <form class="rocketSearch" action="/launch-results">
@@ -42,15 +33,12 @@
     <ul class="tracked-launches">
       <% homePageObject[1].rows.forEach(launch => { %>
       <li class="tracked-launch">
-
-        <span class="date-label">Date: </span>
         <span class="provider-label">Provider: </span>
         <span class="mission-label">Mission: </span>
         <span class="description-label">Description: </span>
         <span class="orbital-label">Orbital Profile: </span>
         <span class="vehicle-label">Vehicle: </span>
 
-        <p class="date-info"><%=launch.date%></p>
         <p class="launchprovider-info"><%=launch.launchprovider%></p>
         <p class="missionname-info"><%=launch.missionname%></p>
         <p class="missiondescription-info"><%=launch.missiondescription%></p>
@@ -58,8 +46,8 @@
         <p class="rocketname-info"><%=launch.rocketname%></p>
         <span class="status-info">
           <h3><%=launch.statusname%></h3>
-          <p><%=launch.rocketstartwindow%></p>
-          <p><%=launch.rocketendwindow%></p>
+          <p><%=launch.launchdate%></p>
+          <p><%=launch.launchtime%></p>
         </span>
         <form class="remove_from_tracker" action="/<%= launch.id %>?_warp=DELETE" method="POST">
           <button type="submit">Remove From Tracker</button>
